@@ -1,0 +1,196 @@
+.personagem {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.personagem h2 {
+  margin: 0 0 0.5rem;
+}
+
+.personagem label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+.personagem input {
+  padding: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100px;
+  font-family: inherit;
+  font-size: inherit;
+  background-color: #C0C0C0;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.personagem .atributos,
+.personagem .status,
+.personagem .bonus,
+.personagem .ataques {
+  padding: 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+
+.personagem .atributos label,
+.personagem .status label,
+.personagem .bonus label,
+.personagem .ataques label {
+  max-width: 280px;
+}
+
+.personagem .status > div,
+.personagem .bonus > div {
+  margin-top: 0.75rem;
+}
+.informacaoPersonagemTitleContainer{
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+}
+.informacaoBasicaContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.informacaoBasicaContainer label{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 20px;
+}
+.informacaoBasicaContainer input {
+  width: 250px;
+}
+.informacaoBasicaContainer .inputNumber{
+  width: 40px;
+}
+.personagem .treinamento {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+}
+.personagem .treinamento label {
+  margin-bottom: 0.25rem;
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+.personagem .treinamento input {
+  width: 30px;
+}
+.personagem .atributosTitleContainer{
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+}
+.personagem .atributosValoresContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+}
+.personagem .atributosValoresContainer label{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: baseline;
+}
+.personagem .atributosValoresContainer input{
+  width: 30px;
+}
+.personagem .statusTitleContainer {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+}
+.personagem .statusValoresContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 50px;
+}
+.personagem .statusUnicoValorContainer{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  
+}
+.personagem .statusUnicoValorContainer label{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 20px;
+}
+.personagem .statusUnicoValorContainer input{
+  width: 50px;
+}
+.personagem .periciasTitle {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+}
+.personagem .periciasContainer{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.personagem .periciaUnicaContainer{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.personagem .periciaUnicaContainer input{
+  width: 50px;
+}
+.personagem .bonusTitleContainer{
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+}
+
+.personagem .bonusContainer{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.personagem .bonusContainerUnico {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-bottom: 5px;
+  height: 40px;
+}
+.personagem .bonusContainerUnico input{
+  width: 200px;
+}
+.personagem .bonusContainerUnico .inputNumberBonus {
+  width: 50px;
+}
+.personagem .ataquesContainerTitle{
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+}
+.personagem .ataque{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.personagem .ataque label{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 10px;
+  margin-left: 20px;
+}
+.personagem .ataque label input{
+  width: 150px;
+}

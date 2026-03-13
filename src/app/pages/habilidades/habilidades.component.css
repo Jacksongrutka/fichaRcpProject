@@ -1,0 +1,60 @@
+.habilidades-page {
+  padding: 1.25rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.section {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.section h3 {
+  margin: 0 0 0.75rem;
+}
+
+.inputs-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.inputs-row label,
+.item label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1 1 160px;
+}
+
+.item {
+  display: grid;
+  gap: 1rem;
+}
+
+label.full {
+  flex: 1 1 100%;
+}
+
+input,
+textarea {
+  padding: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.35rem;
+  font: inherit;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 4rem;
+}
+.evolucoesTitle{
+  display: flex; 
+  justify-content: space-around;
+
+}
+.habilidadesTitle{
+  display: flex;
+  justify-content: space-around;
+}

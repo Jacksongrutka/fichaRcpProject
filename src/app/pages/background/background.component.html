@@ -1,0 +1,59 @@
+<div class="background-page">
+  <h2>Background</h2>
+
+  <div class="section aparencia">
+    <h3>Aparência</h3>
+    <div class="row">
+      <div class="col">
+        <label>
+          Altura
+          <input type="number" [(ngModel)]="altura" />
+        </label>
+        <label>
+          Cor dos olhos
+          <input type="text" [(ngModel)]="corDosOlhos" />
+        </label>
+        <label>
+          Membros decepados
+          <input type="text" [(ngModel)]="membrosDecepados" />
+        </label>
+      </div>
+
+      <div class="col">
+        <label>
+          Aparência geral
+          <input type="text" [(ngModel)]="aparenciaGeral" />
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <label class="field">
+    História
+    <input type="text" [(ngModel)]="historia" />
+  </label>
+
+  <div class="section pessoas-importantes">
+    <h3>Pessoas Importantes</h3>
+    <div class="item" *ngFor="let pessoa of pessoasImportantes; let i = index">
+      <label>
+        Nome
+        <input type="text" [(ngModel)]="pessoa.nome" />
+      </label>
+      <label>
+        Relação
+        <input type="text" [(ngModel)]="pessoa.relacao" />
+      </label>
+    </div>
+  </div>
+
+  <label class="field">
+    Traumas
+    <input type="text" [(ngModel)]="traumas" />
+  </label>
+
+  <label class="field">
+    Âncoras
+    <input type="text" [(ngModel)]="ancoras" />
+  </label>
+</div>

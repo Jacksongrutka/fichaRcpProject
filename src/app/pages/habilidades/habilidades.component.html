@@ -1,0 +1,67 @@
+<div class="habilidades-page">
+  <div class="habilidadesTitle">
+    <h2>Habilidades</h2>
+  </div>
+  
+
+  <div class="section evolucoes">
+    <div class="evolucoesTitle">
+      <h3>Evoluções</h3>
+    </div>
+    
+    <div class="inputs-row">
+      <label>
+        Combatente
+        <input type="number" [(ngModel)]="combatente" />
+      </label>
+      <label>
+        Especialista
+        <input type="number" [(ngModel)]="especialista" />
+      </label>
+      <label>
+        Ocultista
+        <input type="number" [(ngModel)]="ocultista" />
+      </label>
+    </div>
+  </div>
+
+  <div class="section poderes">
+    <h3>Poderes</h3>
+    <div class="item">
+      <label>
+        Nome
+        <input type="text" [(ngModel)]="poderNome" />
+      </label>
+      <label>
+        Custo
+        <input type="number" [(ngModel)]="poderCusto" />
+      </label>
+      <label class="full">
+        Descrição
+        <textarea [(ngModel)]="poderDescricao"></textarea>
+      </label>
+    </div>
+  </div>
+
+  <div class="section rituais">
+    <h3>Rituais</h3>
+    <div class="item">
+      <label>
+        Nome
+        <input type="text" [(ngModel)]="ritualNome" />
+      </label>
+      <label>
+        Custo
+        <input type="number" [(ngModel)]="ritualCusto" />
+      </label>
+      <label>
+        Componentes
+        <input type="text" [(ngModel)]="ritualComponentes" />
+      </label>
+      <label class="full">
+        Descrição
+        <textarea [(ngModel)]="ritualDescricao"></textarea>
+      </label>
+    </div>
+  </div>
+</div>

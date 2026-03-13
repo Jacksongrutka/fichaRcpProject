@@ -1,0 +1,28 @@
+<div class="inventario-page">
+  <h2>Inventário</h2>
+
+  <label class="field">
+    Dinheiro
+    <input type="number" [(ngModel)]="dinheiro" />
+  </label>
+
+  <div class="itens">
+    <h3>Itens</h3>
+    <div class="item" *ngFor="let item of itens; let i = index">
+      <div class="row">
+        <label>
+          Nome
+          <input type="text" [(ngModel)]="item.nome" />
+        </label>
+        <label>
+          Quantidade
+          <input type="number" [(ngModel)]="item.quantidade" />
+        </label>
+        <label>
+          Descrição
+          <input type="text" [(ngModel)]="item.descricao" />
+        </label>
+      </div>
+    </div>
+  </div>
+</div>

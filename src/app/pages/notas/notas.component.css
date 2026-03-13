@@ -1,0 +1,19 @@
+.notas-page {
+  padding: 1.25rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-width: 640px;
+}
+
+input {
+  padding: 0.7rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.35rem;
+  font: inherit;
+}

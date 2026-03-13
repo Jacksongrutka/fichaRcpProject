@@ -1,0 +1,296 @@
+<div class="personagem">
+  <div class="informacaoPersonagem">
+    <div class="informacaoPersonagemTitleContainer">
+      <h2>Informações do Personagem</h2>
+    </div>
+    <div class="informacaoBasicaContainer">
+      <label>
+        Nome
+        <input [(ngModel)]="nome" type="text" />
+      </label>
+
+      <label>
+        Rank Agente
+        <input [(ngModel)]="rankAgente" type="text" />
+      </label>
+
+      <label>
+        Idade
+        <input class="inputNumber" [(ngModel)]="idade" type="number" />
+      </label>
+
+      <label>
+        Sexo
+        <input  [(ngModel)]="sexo" type="text" />
+      </label>
+    </div>
+    
+    <div class="treinamento">
+      <h3>Treinamento</h3>
+      <label>
+        Combatente:
+        <input [(ngModel)]="treinamentoCombatente" type="number">
+      </label>
+      <label>
+        Especialista:
+        <input [(ngModel)]="treinamentoEspecialista" type="number">
+      </label>
+      <label>
+        Ocultista:
+        <input [(ngModel)]="treinamentoOcultista" type="number">
+      </label>
+    </div>
+  </div>
+
+  <div class="atributos">
+    <div class="atributosTitleContainer">
+      <h2>Atributos</h2>
+    </div>
+    <div class="atributosValoresContainer">
+      <label>
+        Força
+        <input [(ngModel)]="forca" type="number" />
+      </label>
+
+      <label>
+        Destreza
+        <input [(ngModel)]="destreza" type="number" />
+      </label>
+
+      <label>
+        Constituição
+        <input [(ngModel)]="constituicao" type="number" />
+      </label>
+
+      <label>
+        Tamanho
+        <input [(ngModel)]="tamanho" type="number" />
+      </label>
+
+      <label>
+        Inteligência
+        <input [(ngModel)]="inteligencia" type="number" />
+      </label>
+
+      <label>
+        Sabedoria
+        <input [(ngModel)]="sabedoria" type="number" />
+      </label>
+
+      <label>
+        Carisma
+        <input [(ngModel)]="carisma" type="number" />
+      </label>
+
+      <label>
+        Poder
+        <input [(ngModel)]="poder" type="number" />
+      </label>
+    </div>
+    
+  </div>
+
+  <div class="status">
+    <div class="statusTitleContainer">
+      <h2>Status</h2>
+    </div>
+    
+    <div class="statusValoresContainer">
+      <div class="statusUnicoValorContainer">
+        <label>
+          HP Atual
+          <input [(ngModel)]="hpAtual" type="number" />
+        </label>
+        <label>
+          HP Max
+          <input [(ngModel)]="hpMaximo" type="number" />
+        </label>
+      </div>
+
+      <div class="statusUnicoValorContainer">
+        <label>
+          Energia Atual
+          <input [(ngModel)]="energiaAtual" type="number" />
+        </label>
+        <label>
+          Energia Max
+          <input [(ngModel)]="energiaMaxima" type="number" />
+        </label>
+      </div>
+
+      <div class="statusUnicoValorContainer">
+        <label>
+          Sanidade Atual
+          <input [(ngModel)]="sanidadeAtual" type="number" />
+        </label>
+        <label>
+          Sanidade Max
+          <input [(ngModel)]="sanidadeMaxima" type="number" />
+        </label>
+      </div>
+    </div>
+   
+    <div class="periciasTitle">
+      <h3>Perícias</h3>
+    </div>  
+
+    <div class="periciasContainer">
+      <div class="periciaUnicaContainer">
+        <div class="nomePericia">
+          investigacao
+        </div>
+        <label>
+          <input [(ngModel)]="periciaValor" type="number" />
+        </label>
+      </div>
+      <div class="periciaUnicaContainer">
+        <div class="nomePericia">
+          investigacao
+        </div>
+        <label>
+          <input [(ngModel)]="periciaValor" type="number" />
+        </label>
+      </div>
+      <div class="periciaUnicaContainer">
+        <div class="nomePericia">
+          investigacao
+        </div>
+        <label>
+          <input [(ngModel)]="periciaValor" type="number" />
+        </label>
+      </div>
+      <div class="periciaUnicaContainer">
+        <div class="nomePericia">
+          investigacao
+        </div>
+        <label>
+          <input [(ngModel)]="periciaValor" type="number" />
+        </label>
+      </div>
+      <div class="periciaUnicaContainer">
+        <div class="nomePericia">
+          investigacao
+        </div>
+        <label>
+          <input [(ngModel)]="periciaValor" type="number" />
+        </label>
+      </div>
+      <div class="periciaUnicaContainer">
+        <div class="nomePericia">
+          investigacao
+        </div>
+        <label>
+          <input [(ngModel)]="periciaValor" type="number" />
+        </label>
+      </div>
+      <div class="periciaUnicaContainer">
+        <div class="nomePericia">
+          investigacao
+        </div>
+        <label>
+          <input [(ngModel)]="periciaValor" type="number" />
+        </label>
+      </div>
+      <div class="periciaUnicaContainer">
+        <div class="nomePericia">
+          investigacao
+        </div>
+        <label>
+          <input [(ngModel)]="periciaValor" type="number" />
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="bonus">
+    <div class="bonusTitleContainer">
+      <h2>Bônus</h2>
+      <div>
+        Bônus Corpo a Corpo
+        <input [(ngModel)]="bonusCorpoACorpo" type="number" />
+      </div>
+    </div>
+        <div class="bonusContainer">
+          <div class="bonusContainerResistencia">
+            <h3>Resistências</h3>
+              <div class="bonusContainerUnico">
+                <input type="text">
+                <input class="inputNumberBonus" [(ngModel)]="resistencias" type="text" />
+              </div>
+          </div>
+
+          <div class="outrosBonus">
+            <h3>Outros Bônus</h3>
+              <div class="bonusContainerUnico">
+                <input type="text">
+                <input class="inputNumberBonus" [(ngModel)]="outrosBonus" type="number" />
+              </div>
+              <div class="bonusContainerUnico">
+                <input type="text">
+                <input class="inputNumberBonus" [(ngModel)]="outrosBonus" type="number" />
+              </div>
+          </div>
+        </div>
+      
+    
+  </div>
+
+  <div class="ataques">
+    <div class="ataquesContainerTitle">
+      <h2>Ataques</h2>
+    </div>
+    
+    <div class="ataque">
+      <label>
+        Nome
+        <input [(ngModel)]="ataqueNome" type="text" />
+      </label>
+      <label>
+        Perícia
+        <input [(ngModel)]="ataquePericia" type="text" />
+      </label>
+      <label>
+        Dano
+        <input [(ngModel)]="ataqueDano" type="text" />
+      </label>
+      <label>
+        Tipo
+        <input [(ngModel)]="ataqueTipo" type="text" />
+      </label>
+      <label>
+        Efeito
+        <input [(ngModel)]="ataqueEfeito" type="text" />
+      </label>
+      <label>
+        Munição
+        <input [(ngModel)]="ataqueMunicao" type="text" />
+      </label>
+    </div>
+    <div class="ataque">
+      <label>
+        Nome
+        <input [(ngModel)]="ataqueNome" type="text" />
+      </label>
+      <label>
+        Perícia
+        <input [(ngModel)]="ataquePericia" type="text" />
+      </label>
+      <label>
+        Dano
+        <input [(ngModel)]="ataqueDano" type="text" />
+      </label>
+      <label>
+        Tipo
+        <input [(ngModel)]="ataqueTipo" type="text" />
+      </label>
+      <label>
+        Efeito
+        <input [(ngModel)]="ataqueEfeito" type="text" />
+      </label>
+      <label>
+        Munição
+        <input [(ngModel)]="ataqueMunicao" type="text" />
+      </label>
+    </div>
+  </div>
+</div>
