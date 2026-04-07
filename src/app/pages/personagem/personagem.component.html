@@ -1,296 +1,221 @@
-<div class="personagem">
-  <div class="informacaoPersonagem">
-    <div class="informacaoPersonagemTitleContainer">
-      <h2>Informações do Personagem</h2>
-    </div>
-    <div class="informacaoBasicaContainer">
-      <label>
-        Nome
-        <input [(ngModel)]="nome" type="text" />
-      </label>
-
-      <label>
-        Rank Agente
-        <input [(ngModel)]="rankAgente" type="text" />
-      </label>
-
-      <label>
-        Idade
-        <input class="inputNumber" [(ngModel)]="idade" type="number" />
-      </label>
-
-      <label>
-        Sexo
-        <input  [(ngModel)]="sexo" type="text" />
-      </label>
-    </div>
-    
-    <div class="treinamento">
-      <h3>Treinamento</h3>
-      <label>
-        Combatente:
-        <input [(ngModel)]="treinamentoCombatente" type="number">
-      </label>
-      <label>
-        Especialista:
-        <input [(ngModel)]="treinamentoEspecialista" type="number">
-      </label>
-      <label>
-        Ocultista:
-        <input [(ngModel)]="treinamentoOcultista" type="number">
-      </label>
-    </div>
-  </div>
-
-  <div class="atributos">
-    <div class="atributosTitleContainer">
-      <h2>Atributos</h2>
-    </div>
-    <div class="atributosValoresContainer">
-      <label>
-        Força
-        <input [(ngModel)]="forca" type="number" />
-      </label>
-
-      <label>
-        Destreza
-        <input [(ngModel)]="destreza" type="number" />
-      </label>
-
-      <label>
-        Constituição
-        <input [(ngModel)]="constituicao" type="number" />
-      </label>
-
-      <label>
-        Tamanho
-        <input [(ngModel)]="tamanho" type="number" />
-      </label>
-
-      <label>
-        Inteligência
-        <input [(ngModel)]="inteligencia" type="number" />
-      </label>
-
-      <label>
-        Sabedoria
-        <input [(ngModel)]="sabedoria" type="number" />
-      </label>
-
-      <label>
-        Carisma
-        <input [(ngModel)]="carisma" type="number" />
-      </label>
-
-      <label>
-        Poder
-        <input [(ngModel)]="poder" type="number" />
-      </label>
-    </div>
-    
-  </div>
-
-  <div class="status">
-    <div class="statusTitleContainer">
-      <h2>Status</h2>
-    </div>
-    
-    <div class="statusValoresContainer">
-      <div class="statusUnicoValorContainer">
+<form [formGroup]="form">
+  <div class="personagem">
+    <button (click)="teste()">testar</button>
+    <div class="informacaoPersonagem">
+      <div class="informacaoPersonagemTitleContainer">
+        <h2>Informações do Personagem</h2>
+      </div>
+      <div class="informacaoBasicaContainer">
         <label>
-          HP Atual
-          <input [(ngModel)]="hpAtual" type="number" />
+          Nome
+          <input formControlName="nome" type="text" />
         </label>
+
         <label>
-          HP Max
-          <input [(ngModel)]="hpMaximo" type="number" />
+          Rank Agente
+          <input formControlName="rankAgente" type="text" />
+        </label>
+
+        <label>
+          Idade
+          <input class="inputNumber" formControlName="idade" type="number" />
+        </label>
+
+        <label>
+          Sexo
+          <input formControlName="sexo" type="text" />
         </label>
       </div>
-
-      <div class="statusUnicoValorContainer">
-        <label>
-          Energia Atual
-          <input [(ngModel)]="energiaAtual" type="number" />
-        </label>
-        <label>
-          Energia Max
-          <input [(ngModel)]="energiaMaxima" type="number" />
-        </label>
-      </div>
-
-      <div class="statusUnicoValorContainer">
-        <label>
-          Sanidade Atual
-          <input [(ngModel)]="sanidadeAtual" type="number" />
-        </label>
-        <label>
-          Sanidade Max
-          <input [(ngModel)]="sanidadeMaxima" type="number" />
-        </label>
-      </div>
-    </div>
-   
-    <div class="periciasTitle">
-      <h3>Perícias</h3>
-    </div>  
-
-    <div class="periciasContainer">
-      <div class="periciaUnicaContainer">
-        <div class="nomePericia">
-          investigacao
-        </div>
-        <label>
-          <input [(ngModel)]="periciaValor" type="number" />
-        </label>
-      </div>
-      <div class="periciaUnicaContainer">
-        <div class="nomePericia">
-          investigacao
-        </div>
-        <label>
-          <input [(ngModel)]="periciaValor" type="number" />
-        </label>
-      </div>
-      <div class="periciaUnicaContainer">
-        <div class="nomePericia">
-          investigacao
-        </div>
-        <label>
-          <input [(ngModel)]="periciaValor" type="number" />
-        </label>
-      </div>
-      <div class="periciaUnicaContainer">
-        <div class="nomePericia">
-          investigacao
-        </div>
-        <label>
-          <input [(ngModel)]="periciaValor" type="number" />
-        </label>
-      </div>
-      <div class="periciaUnicaContainer">
-        <div class="nomePericia">
-          investigacao
-        </div>
-        <label>
-          <input [(ngModel)]="periciaValor" type="number" />
-        </label>
-      </div>
-      <div class="periciaUnicaContainer">
-        <div class="nomePericia">
-          investigacao
-        </div>
-        <label>
-          <input [(ngModel)]="periciaValor" type="number" />
-        </label>
-      </div>
-      <div class="periciaUnicaContainer">
-        <div class="nomePericia">
-          investigacao
-        </div>
-        <label>
-          <input [(ngModel)]="periciaValor" type="number" />
-        </label>
-      </div>
-      <div class="periciaUnicaContainer">
-        <div class="nomePericia">
-          investigacao
-        </div>
-        <label>
-          <input [(ngModel)]="periciaValor" type="number" />
-        </label>
-      </div>
-    </div>
-  </div>
-
-  <div class="bonus">
-    <div class="bonusTitleContainer">
-      <h2>Bônus</h2>
-      <div>
-        Bônus Corpo a Corpo
-        <input [(ngModel)]="bonusCorpoACorpo" type="number" />
-      </div>
-    </div>
-        <div class="bonusContainer">
-          <div class="bonusContainerResistencia">
-            <h3>Resistências</h3>
-              <div class="bonusContainerUnico">
-                <input type="text">
-                <input class="inputNumberBonus" [(ngModel)]="resistencias" type="text" />
-              </div>
-          </div>
-
-          <div class="outrosBonus">
-            <h3>Outros Bônus</h3>
-              <div class="bonusContainerUnico">
-                <input type="text">
-                <input class="inputNumberBonus" [(ngModel)]="outrosBonus" type="number" />
-              </div>
-              <div class="bonusContainerUnico">
-                <input type="text">
-                <input class="inputNumberBonus" [(ngModel)]="outrosBonus" type="number" />
-              </div>
-          </div>
-        </div>
       
-    
-  </div>
+      <div class="treinamento">
+        <h3>Treinamento</h3>
+        <label>
+          Combatente:
+          <input formControlName="combatente" type="number">
+        </label>
+        <label>
+          Especialista:
+          <input formControlName="especialista" type="number">
+        </label>
+        <label>
+          Ocultista:
+          <input formControlName="ocultista" type="number">
+        </label>
+      </div>
+    </div>
 
-  <div class="ataques">
-    <div class="ataquesContainerTitle">
-      <h2>Ataques</h2>
+    <div class="atributos">
+      <div class="atributosTitleContainer">
+        <h2>Atributos</h2>
+      </div>
+      <div class="atributosValoresContainer">
+        <label>
+          Força
+          <input formControlName="forca" type="number" />
+        </label>
+
+        <label>
+          Destreza
+          <input formControlName="destreza" type="number" />
+        </label>
+
+        <label>
+          Constituição
+          <input formControlName="constituicao" type="number" />
+        </label>
+
+        <label>
+          Tamanho
+          <input formControlName="tamanho" type="number" />
+        </label>
+
+        <label>
+          Inteligência
+          <input formControlName="inteligencia" type="number" />
+        </label>
+
+        <label>
+          Sabedoria
+          <input formControlName="sabedoria" type="number" />
+        </label>
+
+        <label>
+          Carisma
+          <input formControlName="carisma" type="number" />
+        </label>
+
+        <label>
+          Poder
+          <input formControlName="poder" type="number" />
+        </label>
+      </div>
+      
     </div>
+
+    <div class="status">
+      <div class="statusTitleContainer">
+        <h2>Status</h2>
+      </div>
+      
+      <div class="statusValoresContainer">
+        <div class="statusUnicoValorContainer">
+          <label>
+            HP Atual
+            <input formControlName="hpAtual" type="number" />
+          </label>
+          <label>
+            HP Max
+            <input formControlName="hpMax" type="number" />
+          </label>
+        </div>
+
+        <div class="statusUnicoValorContainer">
+          <label>
+            Energia Atual
+            <input formControlName="energiaAtual" type="number" />
+          </label>
+          <label>
+            Energia Max
+            <input formControlName="energiaMax" type="number" />
+          </label>
+        </div>
+
+        <div class="statusUnicoValorContainer">
+          <label>
+            Sanidade Atual
+            <input formControlName="sanidadeAtual" type="number" />
+          </label>
+          <label>
+            Sanidade Max
+            <input formControlName="sanidadeMax" type="number" />
+          </label>
+        </div>
+      </div>
     
-    <div class="ataque">
-      <label>
-        Nome
-        <input [(ngModel)]="ataqueNome" type="text" />
-      </label>
-      <label>
-        Perícia
-        <input [(ngModel)]="ataquePericia" type="text" />
-      </label>
-      <label>
-        Dano
-        <input [(ngModel)]="ataqueDano" type="text" />
-      </label>
-      <label>
-        Tipo
-        <input [(ngModel)]="ataqueTipo" type="text" />
-      </label>
-      <label>
-        Efeito
-        <input [(ngModel)]="ataqueEfeito" type="text" />
-      </label>
-      <label>
-        Munição
-        <input [(ngModel)]="ataqueMunicao" type="text" />
-      </label>
+      <div class="periciasTitle">
+        <h3>Perícias</h3>
+        <button (click)="adicionarPericia()" >Adicionar Perícia</button>
+      </div>  
+      <div class="periciasContainer" formArrayName="pericias">  
+        <div class="periciaUnicaContainer" *ngFor="let p of pericias.controls; let i = index" [formGroupName]="i">
+          <div class="nomePericia">
+            <input placeholder="Nome da pericia" formControlName="periciaNome" type="text">
+          </div>
+          <label>
+            <input class="inputNumber" formControlName="periciaValor" type="number">
+          </label>  
+        </div>
+
+      </div>
     </div>
-    <div class="ataque">
-      <label>
-        Nome
-        <input [(ngModel)]="ataqueNome" type="text" />
-      </label>
-      <label>
-        Perícia
-        <input [(ngModel)]="ataquePericia" type="text" />
-      </label>
-      <label>
-        Dano
-        <input [(ngModel)]="ataqueDano" type="text" />
-      </label>
-      <label>
-        Tipo
-        <input [(ngModel)]="ataqueTipo" type="text" />
-      </label>
-      <label>
-        Efeito
-        <input [(ngModel)]="ataqueEfeito" type="text" />
-      </label>
-      <label>
-        Munição
-        <input [(ngModel)]="ataqueMunicao" type="text" />
-      </label>
+
+    <div class="bonus">
+      <div class="bonusTitleContainer">
+        <h2>Bônus</h2>
+        <div>
+          Bônus Corpo a Corpo
+          <input formControlName="bonusCorpoACorpo" type="number" />
+        </div>
+      </div>
+          <div class="bonusContainer">
+            <div class="bonusContainerResistencia">
+              <div class="sectionTitle">
+                <h3>Resistências</h3>
+                <button (click)="adicionarResistencia()">Adicionar Resistência</button>
+              </div>
+              <div formArrayName="resistencias">
+                <div class="bonusContainerUnico" *ngFor="let p of resistencias.controls; let i = index" [formGroupName]="i">
+                  <input placeholder="Resistencia" formControlName="resistenciaNome" type="text">
+                  <input formControlName="ResistenciaValor" class="inputNumberBonus" type="text" />
+                </div>
+              </div>
+            </div>
+
+            <div class="outrosBonus" formArrayName="outrosBonus">
+              <div class="sectionTitle">
+                <h3>Outros Bônus</h3>
+                <button (click)="adicionarOutrosBonus()">Adicionar Bônus</button>
+              </div>
+                <div class="bonusContainerUnico" *ngFor="let p of outrosBonus.controls; let i = index" [formGroupName]="i">
+                  <input placeholder="outro bonus" type="text" formControlName="outroBonusNome">
+                  <input class="inputNumberBonus" type="number" formControlName="outroBonusValor" />
+                </div>
+            </div>
+          </div>   
+    </div>
+
+    <div class="ataques" formArrayName="ataques">
+      <div class="ataquesContainerTitle">
+        <h2>Ataques</h2>
+        <button (click)="adicionarAtaques()">Adicionar Ataque</button>
+      </div>
+      
+      <div class="ataque" *ngFor="let p of ataques.controls; let i = index" [formGroupName]="i">
+        <label>
+          Nome
+          <input formControlName="ataqueNome" type="text" />
+        </label>
+        <label>
+          Perícia
+          <input formControlName="ataquePericiaUsada" type="text" />
+        </label>
+        <label>
+          Dano
+          <input formControlName="ataqueDano" type="text" />
+        </label>
+        <label>
+          Tipo
+          <input formControlName="tipoDano" type="text" />
+        </label>
+        <label>
+          Efeito
+          <input formControlName="ataqueEfeito" type="text" />
+        </label>
+        <label>
+          Munição
+          <input formControlName="ataqueMunicacao" type="text" />
+        </label>
+      </div>
     </div>
   </div>
-</div>
+</form>

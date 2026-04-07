@@ -12,30 +12,35 @@
     <div class="inputs-row">
       <label>
         Combatente
-        <input type="number" [(ngModel)]="combatente" />
+        <input class="inputNumber" type="number" [(ngModel)]="combatente" />
       </label>
       <label>
         Especialista
-        <input type="number" [(ngModel)]="especialista" />
+        <input class="inputNumber" type="number" [(ngModel)]="especialista" />
       </label>
       <label>
         Ocultista
-        <input type="number" [(ngModel)]="ocultista" />
+        <input class="inputNumber" type="number" [(ngModel)]="ocultista" />
       </label>
     </div>
   </div>
 
   <div class="section poderes">
-    <h3>Poderes</h3>
+    <div class="sectionTitle">
+      <h3>Poderes</h3>
+      <button>Adicionar Poder</button>
+    </div>
     <div class="item">
-      <label>
+      <div class="itemNomeCustoContainer">
+        <label>
         Nome
         <input type="text" [(ngModel)]="poderNome" />
-      </label>
-      <label>
-        Custo
-        <input type="number" [(ngModel)]="poderCusto" />
-      </label>
+        </label>
+        <label>
+          Custo
+          <input type="number" [(ngModel)]="poderCusto" />
+        </label>
+      </div>
       <label class="full">
         Descrição
         <textarea [(ngModel)]="poderDescricao"></textarea>
@@ -44,20 +49,25 @@
   </div>
 
   <div class="section rituais">
-    <h3>Rituais</h3>
+    <div class="sectionTitle">
+      <h3>Rituais</h3>
+      <button>Adicionar Ritual</button>
+    </div>
     <div class="item">
-      <label>
+      <div class="itemNomeCustoContainer">
+        <label>
         Nome
         <input type="text" [(ngModel)]="ritualNome" />
-      </label>
-      <label>
-        Custo
-        <input type="number" [(ngModel)]="ritualCusto" />
-      </label>
-      <label>
-        Componentes
-        <input type="text" [(ngModel)]="ritualComponentes" />
-      </label>
+        </label>
+        <label>
+          Custo
+          <input type="number" [(ngModel)]="ritualCusto" />
+        </label>
+        <label>
+          Componentes
+          <input type="text" [(ngModel)]="ritualComponentes" />
+        </label>
+      </div>
       <label class="full">
         Descrição
         <textarea [(ngModel)]="ritualDescricao"></textarea>

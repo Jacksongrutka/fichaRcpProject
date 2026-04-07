@@ -27,6 +27,29 @@
   text-align: center;
 }
 
+.personagem button {
+  padding: 0.5rem 1rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.personagem .sectionTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin-bottom: 20px;
+}
+
+.personagem .sectionTitle h3 {
+  margin: 0;
+}
+
 .personagem .atributos,
 .personagem .status,
 .personagem .bonus,
@@ -134,7 +157,9 @@
 }
 .personagem .periciasTitle {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
   margin-bottom: 50px;
 }
 .personagem .periciasContainer{
@@ -149,6 +174,9 @@
   margin-bottom: 20px;
 }
 .personagem .periciaUnicaContainer input{
+  width: 200px;
+}
+.personagem .periciaUnicaContainer .inputNumber{
   width: 50px;
 }
 .personagem .bonusTitleContainer{
@@ -176,8 +204,14 @@
 }
 .personagem .ataquesContainerTitle{
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
   margin-bottom: 50px;
+}
+
+.personagem .ataquesContainerTitle h2 {
+  margin: 0;
 }
 .personagem .ataque{
   display: flex;

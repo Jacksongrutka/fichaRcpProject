@@ -3,17 +3,18 @@
   display: grid;
   gap: 1.25rem;
 }
+.notasTitleContainer{
+  display: flex;
+  justify-content: center;
+}
 
 .field {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  max-width: 640px;
 }
 
-input {
-  padding: 0.7rem;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 0.35rem;
-  font: inherit;
+textarea {
+ resize: horizontal;
+ min-height: 100px;
 }

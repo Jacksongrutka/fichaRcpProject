@@ -7,20 +7,26 @@
   </label>
 
   <div class="itens">
-    <h3>Itens</h3>
+    <div class="sectionTitle">
+      <h3>Itens</h3>
+      <button>Adicionar Item</button>
+    </div>
     <div class="item" *ngFor="let item of itens; let i = index">
       <div class="row">
-        <label>
+        <div class="itemNomeQuantidadeContainer">
+          <label>
           Nome
           <input type="text" [(ngModel)]="item.nome" />
-        </label>
-        <label>
-          Quantidade
-          <input type="number" [(ngModel)]="item.quantidade" />
-        </label>
-        <label>
+          </label>
+          <label>
+            Quantidade
+            <input type="number" [(ngModel)]="item.quantidade" />
+          </label>
+        </div>
+        
+        <label class="textareaContainer">
           Descrição
-          <input type="text" [(ngModel)]="item.descricao" />
+          <textarea [(ngModel)]="item.descricao"></textarea>
         </label>
       </div>
     </div>
