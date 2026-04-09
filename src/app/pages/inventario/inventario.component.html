@@ -1,34 +1,36 @@
-<div class="inventario-page">
-  <h2>Inventário</h2>
+<form [formGroup]="form">
+  <div class="inventario-page">
+    <h2>Inventário</h2>
 
-  <label class="field">
-    Dinheiro
-    <input type="number" [(ngModel)]="dinheiro" />
-  </label>
+    <label class="field">
+      Dinheiro
+      <input type="number" formControlName="dinheiro" />
+    </label>
 
-  <div class="itens">
-    <div class="sectionTitle">
-      <h3>Itens</h3>
-      <button>Adicionar Item</button>
-    </div>
-    <div class="item" *ngFor="let item of itens; let i = index">
-      <div class="row">
-        <div class="itemNomeQuantidadeContainer">
-          <label>
-          Nome
-          <input type="text" [(ngModel)]="item.nome" />
-          </label>
-          <label>
-            Quantidade
-            <input type="number" [(ngModel)]="item.quantidade" />
+    <div class="itens" formArrayName="itens">
+      <div class="sectionTitle">
+        <h3>Itens</h3>
+        <button type="button" (click)="adicionarItem()">Adicionar Item</button>
+      </div>
+      <div class="item" *ngFor="let p of itens.controls; let i = index" [formGroupName]="i">
+        <div class="row">
+          <div class="itemNomeQuantidadeContainer">
+            <label>
+            Nome
+            <input type="text" formControlName="itemNome" />
+            </label>
+            <label>
+              Quantidade
+              <input type="number" formControlName="itemQuantidade" />
+            </label>
+          </div>
+          
+          <label class="textareaContainer">
+            Descrição
+            <textarea formControlName="itemDescricao"></textarea>
           </label>
         </div>
-        
-        <label class="textareaContainer">
-          Descrição
-          <textarea [(ngModel)]="item.descricao"></textarea>
-        </label>
       </div>
     </div>
   </div>
-</div>
+</form>

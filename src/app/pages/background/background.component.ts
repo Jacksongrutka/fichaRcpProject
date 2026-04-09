@@ -1,29 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormArray, ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-background',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './background.component.html',
   styleUrls: ['./background.component.css']
 })
-export class BackgroundComponent {
-  idade: number | null = null;
-  altura: number | null = null;
-  corDosOlhos = '';
-  membrosDecepados = '';
-  aparenciaGeral = '';
+export class BackgroundComponent implements OnInit {
 
-  historia = '';
+  form!: FormGroup;
 
-  pessoasImportantes = [
-    { nome: '', relacao: '' },
-    { nome: '', relacao: '' },
-    { nome: '', relacao: '' },
-  ];
+  constructor(private fb:FormBuilder){};
 
-  traumas = '';
-  ancoras = '';
+  ngOnInit(){
+    this.form = this.fb.group({
+      idade:[null],
+      altura:[null],
+      corDosOlhos:[""],
+      membrosDecepados:[""],
+      aparenciaGeral:[""],
+      historia:[""],
+      pessoasImportantes:this.fb.array([]),
+      traumas:[""],
+      ancoras:[""],
+    })
+  }
+
+  get pessoasImportantes(){
+    return this.form.get('pessoasImportantes') as FormArray;
+  }
+
+  adicionarPessoa(){
+    const novaPessoa = this.fb.group({
+      nomePessoa:[""],
+      relacaoPessoa:[""],
+    });
+
+    this.pessoasImportantes.push(novaPessoa);
+  }
+  
 }

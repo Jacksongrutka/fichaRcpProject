@@ -1,20 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-inventario',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './inventario.component.html',
   styleUrls: ['./inventario.component.css']
 })
-export class InventarioComponent {
-  dinheiro: number | null = null;
+export class InventarioComponent implements OnInit {
+  
+  form!: FormGroup;
 
-  itens = [
-    { nome: '', quantidade: 0, descricao: '' },
-    { nome: '', quantidade: 0, descricao: '' },
-    { nome: '', quantidade: 0, descricao: '' },
-  ];
+  constructor(private fb:FormBuilder){};
+
+  ngOnInit(){
+    
+    this.form = this.fb.group({
+      dinheiro:[null],
+      itens:this.fb.array([]),
+    });
+  }
+
+  get itens(){
+      return this.form.get('itens') as FormArray
+    }
+
+  adicionarItem(){
+    const novoItem = this.fb.group({
+      itemNome:[""],
+      itemQuantidade:[null],
+       itemDescricao:[""],
+     });
+     
+    this.itens.push(novoItem);
+  }
+
 }

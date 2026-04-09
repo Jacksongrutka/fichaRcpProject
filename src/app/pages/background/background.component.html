@@ -1,3 +1,4 @@
+<form [formGroup]="form">
 <div class="background-page">
   <h2>Background</h2>
 
@@ -7,22 +8,22 @@
       <div class="aparenciaSimplesContainer">
         <label>
           Altura
-          <input type="number" [(ngModel)]="altura" />
+          <input type="number" formControlName="altura" />
         </label>
         <label>
           Cor dos olhos
-          <input type="text" [(ngModel)]="corDosOlhos" />
+          <input type="text" formControlName="corDosOlhos" />
         </label>
         <label>
           Membros decepados
-          <input type="text" [(ngModel)]="membrosDecepados" />
+          <input type="text" formControlName="membrosDecepados" />
         </label>
       </div>
 
       <div class="aparenciaGeralContainer">
         <label>
           Aparência geral
-          <textarea [(ngModel)]="aparenciaGeral"></textarea>
+          <textarea formControlName="aparenciaGeral"></textarea>
         </label>
       </div>
     </div>
@@ -30,23 +31,23 @@
 
   <label class="field">
     História
-    <textarea [(ngModel)]="historia" ></textarea>
+    <textarea formControlName="historia" ></textarea>
   </label>
 
-  <div class="section pessoas-importantes">
+  <div formArrayName="pessoasImportantes" class="section pessoas-importantes">
     <div class="sectionTitle">
       <h3>Pessoas Importantes</h3>
-      <button>Adicionar Pessoa</button>
+      <button type="button" (click)="adicionarPessoa()">Adicionar Pessoa</button>
     </div>
-    <div class="pessoasImportantesItensContainer">
-      <div class="item" *ngFor="let pessoa of pessoasImportantes; let i = index">
+    <div  class="pessoasImportantesItensContainer">
+      <div class="item" *ngFor="let p of pessoasImportantes.controls; let i = index" [formGroupName]="i">
         <label>
           Nome
-          <input type="text" [(ngModel)]="pessoa.nome" />
+          <input type="text" formControlName="nomePessoa" />
         </label>
         <label>
           Relação
-          <input type="text" [(ngModel)]="pessoa.relacao" />
+          <input type="text" formControlName="relacaoPessoa" />
         </label>
       </div>
     </div>
@@ -55,11 +56,12 @@
 
   <label class="field">
     Traumas
-    <textarea [(ngModel)]="traumas" ></textarea>
+    <textarea formControlName="traumas" ></textarea>
   </label>
 
   <label class="field">
     Âncoras
-    <textarea [(ngModel)]="ancoras" ></textarea>
+    <textarea formControlName="ancoras" ></textarea>
   </label>
 </div>
+</form>

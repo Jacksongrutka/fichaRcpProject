@@ -1,6 +1,6 @@
 <form [formGroup]="form">
   <div class="personagem">
-    <button (click)="teste()">testar</button>
+    <button type="button" (click)="teste()">testar</button>
     <div class="informacaoPersonagem">
       <div class="informacaoPersonagemTitleContainer">
         <h2>Informações do Personagem</h2>
@@ -134,7 +134,7 @@
     
       <div class="periciasTitle">
         <h3>Perícias</h3>
-        <button (click)="adicionarPericia()" >Adicionar Perícia</button>
+        <button type="button" (click)="adicionarPericia()" >Adicionar Perícia</button>
       </div>  
       <div class="periciasContainer" formArrayName="pericias">  
         <div class="periciaUnicaContainer" *ngFor="let p of pericias.controls; let i = index" [formGroupName]="i">
@@ -161,12 +161,12 @@
             <div class="bonusContainerResistencia">
               <div class="sectionTitle">
                 <h3>Resistências</h3>
-                <button (click)="adicionarResistencia()">Adicionar Resistência</button>
+                <button type="button" (click)="adicionarResistencia()">Adicionar Resistência</button>
               </div>
               <div formArrayName="resistencias">
                 <div class="bonusContainerUnico" *ngFor="let p of resistencias.controls; let i = index" [formGroupName]="i">
                   <input placeholder="Resistencia" formControlName="resistenciaNome" type="text">
-                  <input formControlName="ResistenciaValor" class="inputNumberBonus" type="text" />
+                  <input formControlName="resistenciaValor" class="inputNumberBonus" type="text" />
                 </div>
               </div>
             </div>
@@ -174,7 +174,7 @@
             <div class="outrosBonus" formArrayName="outrosBonus">
               <div class="sectionTitle">
                 <h3>Outros Bônus</h3>
-                <button (click)="adicionarOutrosBonus()">Adicionar Bônus</button>
+                <button type="button" (click)="adicionarOutrosBonus()">Adicionar Bônus</button>
               </div>
                 <div class="bonusContainerUnico" *ngFor="let p of outrosBonus.controls; let i = index" [formGroupName]="i">
                   <input placeholder="outro bonus" type="text" formControlName="outroBonusNome">
@@ -187,7 +187,7 @@
     <div class="ataques" formArrayName="ataques">
       <div class="ataquesContainerTitle">
         <h2>Ataques</h2>
-        <button (click)="adicionarAtaques()">Adicionar Ataque</button>
+        <button type="button" (click)="adicionarAtaques()">Adicionar Ataque</button>
       </div>
       
       <div class="ataque" *ngFor="let p of ataques.controls; let i = index" [formGroupName]="i">

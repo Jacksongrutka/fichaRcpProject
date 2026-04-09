@@ -1,28 +1,53 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-habilidades',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './habilidades.component.html',
   styleUrls: ['./habilidades.component.css']
 })
-export class HabilidadesComponent {
-  // Evoluções
-  combatente: number | null = null;
-  especialista: number | null = null;
-  ocultista: number | null = null;
+export class HabilidadesComponent implements OnInit {
 
-  // Poderes
-  poderNome = '';
-  poderCusto: number | null = null;
-  poderDescricao = '';
+  form!: FormGroup;
 
-  // Rituais
-  ritualNome = '';
-  ritualCusto: number | null = null;
-  ritualComponentes = '';
-  ritualDescricao = '';
+  constructor (private fb:FormBuilder){}
+
+  ngOnInit(){
+    this.form = this.fb.group({
+      combatente:[null],
+      especialista:[null],
+      ocultista:[null],
+      poderes:this.fb.array([]),
+      rituais:this.fb.array([]),
+    });
+    
+  };
+
+  get poderes (){
+    return this.form.get('poderes') as FormArray;
+  }
+  get rituais(){
+    return this.form.get('rituais') as FormArray;
+  }
+  adicionarPoder(){
+    const novoPoder = this.fb.group({
+      poderNome:[""],
+      poderCusto:[null],
+      poderDescricao:[""],
+    });
+    this.poderes.push(novoPoder);
+  }
+  adicionarRitual(){
+    const novoRitual = this.fb.group({
+      ritualNome:[""],
+      RitualCusto:[null],
+      RitualComponentes:[""],
+      RitualDescricao:[""],
+    })
+
+    this.rituais.push(novoRitual);
+  }
 }
