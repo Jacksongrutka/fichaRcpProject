@@ -7,7 +7,9 @@ export const fichaVazia: Ficha = {
             rankAgente:"",
             idade:0,
             sexo:"",
-            treinamentos:[],
+            treinamentoCombatente: 0,
+            treinamentoEspecialista: 0,
+            treinamentoOcultista: 0,
         },
         atributos: {
             forca: 0,
@@ -20,154 +22,157 @@ export const fichaVazia: Ficha = {
             poder: 0,
         },
         status: {
-            vida: 0,
-            energia: 0,
-            sanidade: 0,
+            vidaAtual: 0,
+            vidaMax: 0,
+            energiaAtual: 0,
+            energiaMax: 0,
+            sanidadeAtual: 0,
+            sanidadeMax: 0,
             ferimentos: [],
         },
-        pericias: {
-            pericia:[{
-                nome: "atletismo",
-                valor: 1
+        pericias: [
+            {
+                periciaNome: "atletismo",
+                periciaValor: 1
             },
             {
-                nome: "escalar",
-                valor: 1
+                periciaNome: "escalar",
+                periciaValor: 1
             },
             {
-                nome: "luta",
-                valor: 1
+                periciaNome: "luta",
+                periciaValor: 1
             },
             {
-                nome: "acrobacia",
-                valor: 1
+                periciaNome: "acrobacia",
+                periciaValor: 1
             },
             {
-                nome: "pontaria",
-                valor: 1
+                periciaNome: "pontaria",
+                periciaValor: 1
             },
             {
-                nome: "arremessar",
-                valor: 1
+                periciaNome: "arremessar",
+                periciaValor: 1
             },
             {
-                nome: "dirigir",
-                valor: 1
+                periciaNome: "dirigir",
+                periciaValor: 1
             },
             {
-                nome: "nadar",
-                valor: 1
+                periciaNome: "nadar",
+                periciaValor: 1
             },
             {
-                nome: "furtividade",
-                valor: 1
+                periciaNome: "furtividade",
+                periciaValor: 1
             },
             {
-                nome: "ladinagem",
-                valor: 1
+                periciaNome: "ladinagem",
+                periciaValor: 1
             },
             {
-                nome: "esquiva",
-                valor: 1
+                periciaNome: "esquiva",
+                periciaValor: 1
             },
             {
-                nome: "destrancar",
-                valor: 1
+                periciaNome: "destrancar",
+                periciaValor: 1
             },
             {
-                nome: "saltar",
-                valor: 1
+                periciaNome: "saltar",
+                periciaValor: 1
             },
             {
-                nome: "labia",
-                valor: 1,
+                periciaNome: "labia",
+                periciaValor: 1
             },
             {
-                nome: "charme",
-                valor: 1
+                periciaNome: "charme",
+                periciaValor: 1
             },
             {
-                nome: "persuasão",
-                valor: 1
+                periciaNome: "persuasão",
+                periciaValor: 1
             },
             {
-                nome: "intimidação",
-                valor: 1
+                periciaNome: "intimidação",
+                periciaValor: 1
             },
             {
-                nome: "medicina",
-                valor: 1
+                periciaNome: "medicina",
+                periciaValor: 1
             },
             {
-                nome: "atualidades",
-                valor: 1
+                periciaNome: "atualidades",
+                periciaValor: 1
             },
             {
-                nome: "história",
-                valor: 1
+                periciaNome: "história",
+                periciaValor: 1
             },
             {
-                nome: "ocultismo",
-                valor: 1
+                periciaNome: "ocultismo",
+                periciaValor: 1
             },
             {
-                nome: "pilotar",
-                valor: 1
+                periciaNome: "pilotar",
+                periciaValor: 1
             },
             {
-                nome: "Navegar",
-                valor: 1
+                periciaNome: "Navegar",
+                periciaValor: 1
             },
             {
-                nome: "Ciencias básica",
-                valor: 1
+                periciaNome: "Ciencias básica",
+                periciaValor: 1
             },
             {
-                nome: "psicologia",
-                valor: 1
+                periciaNome: "psicologia",
+                periciaValor: 1
             },
             {
-                nome: "sobrevivencia",
-                valor: 1
+                periciaNome: "sobrevivencia",
+                periciaValor: 1
             },
             {
-                nome: "lingua nativa",
-                valor: 1
+                periciaNome: "lingua nativa",
+                periciaValor: 1
             },
             {
-                nome: "concertos eletricos",
-                valor: 1
+                periciaNome: "concertos eletricos",
+                periciaValor: 1
             },
             {
-                nome: "concertos mecanicos",
-                valor: 1
+                periciaNome: "concertos mecanicos",
+                periciaValor: 1
             },
             {
-                nome: "concertos eletronicos",
-                valor: 1
+                periciaNome: "concertos eletronicos",
+                periciaValor: 1
             },
             {
-                nome: "usar computadores",
-                valor: 1
+                periciaNome: "usar computadores",
+                periciaValor: 1
             },
             {
-                nome: "rastrear",
-                valor: 1
+                periciaNome: "rastrear",
+                periciaValor: 1
             },
             {
-                nome: "investigaçao",
-                valor: 1
+                periciaNome: "investigaçao",
+                periciaValor: 1
             },
             {
-                nome: "sorte",
-                valor: 1
+                periciaNome: "sorte",
+                periciaValor: 1
             },
             {
-                nome: "credito",
-                valor: 1
-            },
+                periciaNome: "credito",
+                periciaValor: 1
+            }
         ]
-        },
+        ,
         bonus: {
             bonusCorpoACorpo: 0,
             resistencias: [],

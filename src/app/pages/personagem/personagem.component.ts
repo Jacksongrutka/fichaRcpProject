@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { debounceTime, Subscription } from 'rxjs';
+import { FichaService } from '../../services/ficha.service';
 
 @Component({
   selector: 'app-personagem',
@@ -9,11 +11,12 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, FormArray } from '@angular
   templateUrl: './personagem.component.html',
   styleUrls: ['./personagem.component.css']
 })
-export class PersonagemComponent implements OnInit {
+export class PersonagemComponent implements OnInit , OnDestroy {
   
   form!: FormGroup; 
+  sub!: Subscription;
 
-  constructor(private fb:FormBuilder){}
+  constructor(private fb:FormBuilder , private fichaService:FichaService){}
 
   ngOnInit(){
     this.form = this.fb.group({
@@ -44,7 +47,36 @@ export class PersonagemComponent implements OnInit {
       outrosBonus:this.fb.array([]),
       ataques:this.fb.array([]),
     });
-  }
+
+    const ficha = this.fichaService.getFicha();
+    
+    console.log(ficha)
+
+    
+    ficha.personagem.pericias.forEach(p => {
+      this.pericias.push(this.fb.group({
+        periciaNome:[p.periciaNome],
+        periciaValor:[p.periciaValor],
+      }))
+    });
+    /* personagem.bonus.resistencias?.forEach(p => {
+      this.resistencias.push(this.fb.group({
+        resistenciaNome:[p.tipo],
+        resistenciaValor:[p.valor],
+      }))
+    }) */
+    this.form.patchValue(ficha);
+
+    this.sub = this.form.valueChanges.pipe(debounceTime(300)).subscribe(valor => {
+      this.fichaService.updateFicha(valor);
+    });
+
+    }
+
+    ngOnDestroy(): void {
+      this.sub?.unsubscribe();
+    }
+
   get pericias(){
     return this.form.get('pericias') as FormArray;
   }

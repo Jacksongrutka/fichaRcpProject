@@ -1,8 +1,11 @@
 import { Ferimento } from "./ferimento/ferimento";
 
 export interface Status{
-    vida: number;
-    energia: number;
-    sanidade: number;
+    vidaAtual: number;
+    vidaMax: number;
+    energiaAtual: number;
+    energiaMax: number;
+    sanidadeAtual: number;
+    sanidadeMax: number;
     ferimentos: Ferimento[];
 }

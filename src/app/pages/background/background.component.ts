@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormArray, ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
+import { debounceTime, Subscription } from 'rxjs';
+import { FichaService } from '../../services/ficha.service';
 
 @Component({
   selector: 'app-background',
@@ -9,11 +11,12 @@ import { FormArray, ReactiveFormsModule, FormBuilder, FormGroup } from '@angular
   templateUrl: './background.component.html',
   styleUrls: ['./background.component.css']
 })
-export class BackgroundComponent implements OnInit {
+export class BackgroundComponent implements OnInit , OnDestroy {
 
   form!: FormGroup;
+  sub!: Subscription;
 
-  constructor(private fb:FormBuilder){};
+  constructor(private fb:FormBuilder , private fichaService:FichaService){};
 
   ngOnInit(){
     this.form = this.fb.group({
@@ -27,6 +30,19 @@ export class BackgroundComponent implements OnInit {
       traumas:[""],
       ancoras:[""],
     })
+
+    const ficha = this.fichaService.getFicha();
+    this.form.patchValue(ficha);
+
+    this.sub = this.form.valueChanges.pipe(debounceTime(300)).subscribe(valor =>{
+      this.fichaService.updateFicha(valor);
+    });
+  }
+
+  
+
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe();
   }
 
   get pessoasImportantes(){
