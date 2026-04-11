@@ -178,14 +178,7 @@ export const fichaVazia: Ficha = {
             resistencias: [],
             OutrosBonus: [],
         },
-        ataques: {
-            nome: "",
-            pericia: "",
-            dano: "",
-            tipo: "",
-            efeito: "",
-            municao: 0,
-        }
+        ataques: [],
     },
     habilidades: {
         evolucoes: [],

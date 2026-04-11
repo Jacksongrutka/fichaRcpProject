@@ -20,15 +20,33 @@ export class HabilidadesComponent implements OnInit , OnDestroy {
 
   ngOnInit(){
     this.form = this.fb.group({
-      combatente:[null],
-      especialista:[null],
-      ocultista:[null],
-      poderes:this.fb.array([]),
-      rituais:this.fb.array([]),
+      habilidades: this.fb.group({
+        combatente:[null],
+        especialista:[null],
+        ocultista:[null],
+        poderes:this.fb.array([]),
+        ritual:this.fb.array([]),
+      })
     });
     
     const ficha = this.fichaService.getFicha();
-    this.form.patchValue(ficha);
+    ficha.habilidades.poderes?.forEach(p => {
+      this.poderes.push(this.fb.group({
+        nome:[p.nome],
+        custo:[p.custo],
+        descricao:[p.descricao],
+      }));
+    });
+    ficha.habilidades.ritual?.forEach(r => {
+      this.rituais.push(this.fb.group({
+        nome:[r.nome],
+        custo:[r.custo],
+        componentes:[r.componentes],
+        descricao:[r.descricao],
+      }));
+    });
+
+    this.form.get('habilidades')?.patchValue(ficha.habilidades);
 
     this.sub = this.form.valueChanges.pipe(debounceTime(300)).subscribe( valor => {
       this.fichaService.updateFicha(valor);
@@ -40,25 +58,25 @@ export class HabilidadesComponent implements OnInit , OnDestroy {
   }
 
   get poderes (){
-    return this.form.get('poderes') as FormArray;
+    return this.form.get(['habilidades','poderes']) as FormArray;
   }
   get rituais(){
-    return this.form.get('rituais') as FormArray;
+    return this.form.get(['habilidades','ritual']) as FormArray;
   }
   adicionarPoder(){
     const novoPoder = this.fb.group({
-      poderNome:[""],
-      poderCusto:[null],
-      poderDescricao:[""],
+      nome:[""],
+      custo:[null],
+      descricao:[""],
     });
     this.poderes.push(novoPoder);
   }
   adicionarRitual(){
     const novoRitual = this.fb.group({
-      ritualNome:[""],
-      RitualCusto:[null],
-      RitualComponentes:[""],
-      RitualDescricao:[""],
+      nome:[""],
+      custo:[null],
+      componentes:[""],
+      descricao:[""],
     })
 
     this.rituais.push(novoRitual);

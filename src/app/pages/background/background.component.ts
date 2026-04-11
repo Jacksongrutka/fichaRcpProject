@@ -20,39 +20,48 @@ export class BackgroundComponent implements OnInit , OnDestroy {
 
   ngOnInit(){
     this.form = this.fb.group({
-      idade:[null],
-      altura:[null],
-      corDosOlhos:[""],
-      membrosDecepados:[""],
-      aparenciaGeral:[""],
-      historia:[""],
-      pessoasImportantes:this.fb.array([]),
-      traumas:[""],
-      ancoras:[""],
+      background: this.fb.group({
+        aparencia: this.fb.group({
+          idade:[null],
+          altura:[null],
+          corDosOlhos:[""],
+          membrosDecepados:[""],
+          aparenciaGeral:[""],
+        }),
+        historia:[""],
+        pessoasImportantes:this.fb.array([]),
+        traumas:[""],
+        ancoras:[""],
+      })
     })
 
     const ficha = this.fichaService.getFicha();
-    this.form.patchValue(ficha);
+    ficha.background.pessoasImportantes?.forEach(p => {
+      this.pessoasImportantes.push(this.fb.group({
+        nome:[p.nome],
+        relacionamento:[p.relacionamento],
+      }));
+    });
+
+    this.form.get('background')?.patchValue(ficha.background);
 
     this.sub = this.form.valueChanges.pipe(debounceTime(300)).subscribe(valor =>{
       this.fichaService.updateFicha(valor);
     });
   }
 
-  
-
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
   }
 
   get pessoasImportantes(){
-    return this.form.get('pessoasImportantes') as FormArray;
+    return this.form.get(['background','pessoasImportantes']) as FormArray;
   }
 
   adicionarPessoa(){
     const novaPessoa = this.fb.group({
-      nomePessoa:[""],
-      relacaoPessoa:[""],
+      nome:[""],
+      relacionamento:[""],
     });
 
     this.pessoasImportantes.push(novaPessoa);

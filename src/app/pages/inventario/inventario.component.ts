@@ -21,12 +21,22 @@ export class InventarioComponent implements OnInit , OnDestroy {
   ngOnInit(){
     
     this.form = this.fb.group({
-      dinheiro:[null],
-      itens:this.fb.array([]),
+      inventario: this.fb.group({
+        dinheiro:[null],
+        item:this.fb.array([]),
+      })
     });
 
     const ficha = this.fichaService.getFicha();
-    this.form.patchValue(ficha);
+    ficha.inventario.item?.forEach(item => {
+      this.itens.push(this.fb.group({
+        nome:[item.nome],
+        quantidade:[item.quantidade],
+        descricao:[item.descricao],
+      }));
+    });
+
+    this.form.get('inventario')?.patchValue(ficha.inventario);
 
     this.sub = this.form.valueChanges.pipe(debounceTime(300)).subscribe(value => {
       this.fichaService.updateFicha(value);
@@ -38,14 +48,14 @@ export class InventarioComponent implements OnInit , OnDestroy {
   }
 
   get itens(){
-      return this.form.get('itens') as FormArray
+      return this.form.get(['inventario','item']) as FormArray
     }
 
   adicionarItem(){
     const novoItem = this.fb.group({
-      itemNome:[""],
-      itemQuantidade:[null],
-       itemDescricao:[""],
+      mome:[""],
+      quantidade:[null],
+      descricao:[""],
      });
      
     this.itens.push(novoItem);

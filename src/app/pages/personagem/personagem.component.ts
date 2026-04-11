@@ -20,52 +20,88 @@ export class PersonagemComponent implements OnInit , OnDestroy {
 
   ngOnInit(){
     this.form = this.fb.group({
-      nome:[""],
-      rankAgente:[""],
-      sexo:[""],
-      idade:[null],
-      combatente:[null],
-      especialista:[null],
-      ocultista:[null],
-      forca:[null],
-      destreza:[null],
-      constituicao:[null],
-      tamanho:[null],
-      sabedoria:[null],
-      inteligencia:[null],
-      carisma:[null],
-      poder:[null],
-      hpAtual:[null],
-      hpMax:[null],
-      energiaAtual:[null],
-      energiaMax:[null],
-      sanidadeAtual:[null],
-      sanidadeMax:[null],
-      pericias:this.fb.array([]),
-      bonusCorpoACorpo:[null],
-      resistencias:this.fb.array([]),
-      outrosBonus:this.fb.array([]),
-      ataques:this.fb.array([]),
+      personagem: this.fb.group({
+        informacaoPersonagem: this.fb.group({
+          nome:[""],
+          rankAgente:[""],
+          idade:[null],
+          sexo:[""],
+          treinamentoCombatente:[null],
+          treinamentoEspecialista:[null],
+          treinamentoOcultista:[null],
+        }),
+        atributos: this.fb.group({
+          forca:[null],
+          destreza:[null],
+          constituicao:[null],
+          tamanho:[null],
+          inteligencia:[null],
+          sabedoria:[null],
+          carisma:[null],
+          poder:[null],
+        }),
+        status: this.fb.group({
+          vidaAtual:[null],
+          vidaMax:[null],
+          energiaAtual:[null],
+          energiaMax:[null],
+          sanidadeAtual:[null],
+          sanidadeMax:[null],
+          ferimentos: this.fb.array([]),
+        }),
+        pericias: this.fb.array([]),
+        bonus: this.fb.group({
+          bonusCorpoACorpo:[null],
+          resistencias:this.fb.array([]),
+          OutrosBonus:this.fb.array([]),
+        }),
+        ataques: this.fb.array([]),
+      })
     });
 
     const ficha = this.fichaService.getFicha();
-    
-    console.log(ficha)
 
     
     ficha.personagem.pericias.forEach(p => {
       this.pericias.push(this.fb.group({
         periciaNome:[p.periciaNome],
         periciaValor:[p.periciaValor],
+      }));
+    });
+
+    ficha.personagem.bonus.resistencias?.forEach(r => {
+      this.resistencias.push(this.fb.group({
+        resistenciaNome:[r.tipo],
+        resistenciaValor:[r.valor],
+      }));
+    });
+
+    ficha.personagem.bonus.OutrosBonus?.forEach(b => {
+      this.outrosBonus.push(this.fb.group({
+        outroBonusNome:[b.nome],
+        outroBonusValor:[b.valor],
+      }));
+    });
+
+    ficha.personagem.ataques?.forEach(i => {
+      this.ataques.push(this.fb.group({
+        ataqueNome:[i.ataqueNome],
+        ataquePericiaUsada:[i.ataquePericiaUsada],
+        ataqueDano:[i.ataqueDano],
+        tipoDano:[i.tipoDano],
+        ataqueEfeito:[i.ataqueEfeito],
+        ataqueMunicao:[i.ataqueMunicao],
+
       }))
     });
-    /* personagem.bonus.resistencias?.forEach(p => {
-      this.resistencias.push(this.fb.group({
-        resistenciaNome:[p.tipo],
-        resistenciaValor:[p.valor],
-      }))
-    }) */
-    this.form.patchValue(ficha);
+          
+
+    this.form.get('personagem')?.patchValue({
+      informacaoPersonagem: ficha.personagem.informacaoPersonagem,
+      atributos: ficha.personagem.atributos,
+      status: ficha.personagem.status,
+      bonus: ficha.personagem.bonus,
+    });
 
     this.sub = this.form.valueChanges.pipe(debounceTime(300)).subscribe(valor => {
       this.fichaService.updateFicha(valor);
@@ -78,16 +114,16 @@ export class PersonagemComponent implements OnInit , OnDestroy {
     }
 
   get pericias(){
-    return this.form.get('pericias') as FormArray;
+    return this.form.get(['personagem', 'pericias']) as FormArray;
   }
   get resistencias(){
-    return this.form.get('resistencias') as FormArray;
+    return this.form.get(['personagem', 'bonus', 'resistencias']) as FormArray;
   }
   get outrosBonus(){
-    return this.form.get('outrosBonus') as FormArray;
+    return this.form.get(['personagem', 'bonus', 'OutrosBonus']) as FormArray;
   }
   get ataques(){
-    return this.form.get('ataques') as FormArray;
+    return this.form.get(['personagem', 'ataques']) as FormArray;
   }
   adicionarPericia(){
     const novaPericia = this.fb.group({

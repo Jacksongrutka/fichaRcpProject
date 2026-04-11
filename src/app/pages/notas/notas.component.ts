@@ -21,11 +21,13 @@ export class NotasComponent implements OnInit , OnDestroy {
   ngOnInit(){
     
     this.form = this.fb.group({
-      nota:[""],
+      notas: this.fb.group({
+        nota:[""],
+      })
     });
 
     const ficha = this.fichaService.getFicha();
-    this.form.patchValue(ficha);
+    this.form.get('notas')?.patchValue(ficha.notas);
 
     this.sub = this.form.valueChanges.pipe(debounceTime(300)).subscribe(valor => {
       this.fichaService.updateFicha(valor);

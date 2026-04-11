@@ -1,5 +1,5 @@
 <form [formGroup]="form">
-  <div class="habilidades-page">
+  <div class="habilidades-page" formGroupName="habilidades">
     <div class="habilidadesTitle">
       <h2>Habilidades</h2>
     </div>
@@ -31,25 +31,25 @@
         <h3>Poderes</h3>
         <button type="button" (click)="adicionarPoder()">Adicionar Poder</button>
       </div>
-      <div class="item" *ngFor="let p of poderes.controls let i = index" [formGroupName]="i">
+      <div class="item" *ngFor="let p of poderes.controls; let i = index" [formGroupName]="i">
         <div class="itemNomeCustoContainer">
           <label>
           Nome
-          <input type="text" formControlName="poderNome" />
+          <input type="text" formControlName="nome" />
           </label>
           <label>
             Custo
-            <input type="number" formControlName="poderCusto" />
+            <input type="number" formControlName="custo" />
           </label>
         </div>
         <label class="full">
           Descrição
-          <textarea formControlName="poderDescricao"></textarea>
+          <textarea formControlName="descricao"></textarea>
         </label>
       </div>
     </div>
 
-    <div class="section rituais" formArrayName="rituais">
+    <div class="section rituais" formArrayName="ritual">
       <div class="sectionTitle">
         <h3>Rituais</h3>
         <button type="button" (click)="adicionarRitual()">Adicionar Ritual</button>
@@ -58,20 +58,20 @@
         <div class="itemNomeCustoContainer">
           <label>
           Nome
-          <input type="text" formControlName="ritualNome" />
+          <input type="text" formControlName="nome" />
           </label>
           <label>
             Custo
-            <input type="number" formControlName="ritualCusto" />
+            <input type="number" formControlName="custo" />
           </label>
           <label>
             Componentes
-            <input type="text" formControlName="ritualComponentes" />
+            <input type="text" formControlName="componentes" />
           </label>
         </div>
         <label class="full">
           Descrição
-          <textarea formControlName="ritualDescricao"></textarea>
+          <textarea formControlName="descricao"></textarea>
         </label>
       </div>
     </div>

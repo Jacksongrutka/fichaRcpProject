@@ -11,5 +11,5 @@ export interface Personagem{
     status: Status;
     pericias: Pericia[];
     bonus: Bonus;
-    ataques: Ataques;
+    ataques: Ataques[];
 }

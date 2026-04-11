@@ -1,8 +1,8 @@
 <form [formGroup]="form">
-<div class="background-page">
+<div class="background-page" formGroupName="background">
   <h2>Background</h2>
 
-  <div class="section aparencia">
+  <div class="section aparencia" formGroupName="aparencia">
     <h3>Aparência</h3>
     <div class="aparenciaContainer">
       <div class="aparenciaSimplesContainer">
@@ -43,11 +43,11 @@
       <div class="item" *ngFor="let p of pessoasImportantes.controls; let i = index" [formGroupName]="i">
         <label>
           Nome
-          <input type="text" formControlName="nomePessoa" />
+          <input type="text" formControlName="nome" />
         </label>
         <label>
           Relação
-          <input type="text" formControlName="relacaoPessoa" />
+          <input type="text" formControlName="relacionamento" />
         </label>
       </div>
     </div>

@@ -1,8 +1,8 @@
 export interface Ataques{
-    nome: string;
-    pericia: string;
-    dano: string;
-    tipo: string;
-    efeito: string;
-    municao: number;
+    ataqueNome: string;
+    ataquePericiaUsada: string;
+    ataqueDano: string;
+    tipoDano: string;
+    ataqueEfeito: string;
+    ataqueMunicao: number;
 }

@@ -1,5 +1,5 @@
 <form [formGroup]="form">
-  <div class="inventario-page">
+  <div class="inventario-page" formGroupName="inventario">
     <h2>Inventário</h2>
 
     <label class="field">
@@ -7,7 +7,7 @@
       <input type="number" formControlName="dinheiro" />
     </label>
 
-    <div class="itens" formArrayName="itens">
+    <div class="itens" formArrayName="item">
       <div class="sectionTitle">
         <h3>Itens</h3>
         <button type="button" (click)="adicionarItem()">Adicionar Item</button>
@@ -17,17 +17,17 @@
           <div class="itemNomeQuantidadeContainer">
             <label>
             Nome
-            <input type="text" formControlName="itemNome" />
+            <input type="text" formControlName="nome" />
             </label>
             <label>
               Quantidade
-              <input type="number" formControlName="itemQuantidade" />
+              <input type="number" formControlName="quantidade" />
             </label>
           </div>
           
           <label class="textareaContainer">
             Descrição
-            <textarea formControlName="itemDescricao"></textarea>
+            <textarea formControlName="descricao"></textarea>
           </label>
         </div>
       </div>

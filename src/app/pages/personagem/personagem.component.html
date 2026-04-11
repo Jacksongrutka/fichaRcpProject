@@ -1,7 +1,7 @@
 <form [formGroup]="form">
-  <div class="personagem">
+  <div class="personagem" formGroupName="personagem">
     <button type="button" (click)="teste()">testar</button>
-    <div class="informacaoPersonagem">
+    <div class="informacaoPersonagem" formGroupName="informacaoPersonagem">
       <div class="informacaoPersonagemTitleContainer">
         <h2>Informações do Personagem</h2>
       </div>
@@ -31,20 +31,20 @@
         <h3>Treinamento</h3>
         <label>
           Combatente:
-          <input formControlName="combatente" type="number">
+          <input formControlName="treinamentoCombatente" type="number">
         </label>
         <label>
           Especialista:
-          <input formControlName="especialista" type="number">
+          <input formControlName="treinamentoEspecialista" type="number">
         </label>
         <label>
           Ocultista:
-          <input formControlName="ocultista" type="number">
+          <input formControlName="treinamentoOcultista" type="number">
         </label>
       </div>
     </div>
 
-    <div class="atributos">
+    <div class="atributos" formGroupName="atributos">
       <div class="atributosTitleContainer">
         <h2>Atributos</h2>
       </div>
@@ -92,7 +92,7 @@
       
     </div>
 
-    <div class="status">
+    <div class="status" formGroupName="status">
       <div class="statusTitleContainer">
         <h2>Status</h2>
       </div>
@@ -100,12 +100,12 @@
       <div class="statusValoresContainer">
         <div class="statusUnicoValorContainer">
           <label>
-            HP Atual
-            <input formControlName="hpAtual" type="number" />
+            Vida Atual
+            <input formControlName="vidaAtual" type="number" />
           </label>
           <label>
-            HP Max
-            <input formControlName="hpMax" type="number" />
+            Vida Max
+            <input formControlName="vidaMax" type="number" />
           </label>
         </div>
 
@@ -131,25 +131,26 @@
           </label>
         </div>
       </div>
-    
+    </div>
+
+    <div class="pericias">
       <div class="periciasTitle">
         <h3>Perícias</h3>
         <button type="button" (click)="adicionarPericia()" >Adicionar Perícia</button>
-      </div>  
-      <div class="periciasContainer" formArrayName="pericias">  
+      </div>
+      <div class="periciasContainer" formArrayName="pericias">
         <div class="periciaUnicaContainer" *ngFor="let p of pericias.controls; let i = index" [formGroupName]="i">
           <div class="nomePericia">
             <input placeholder="Nome da pericia" formControlName="periciaNome" type="text">
           </div>
           <label>
             <input class="inputNumber" formControlName="periciaValor" type="number">
-          </label>  
+          </label>
         </div>
-
       </div>
     </div>
 
-    <div class="bonus">
+    <div class="bonus" formGroupName="bonus">
       <div class="bonusTitleContainer">
         <h2>Bônus</h2>
         <div>
@@ -157,31 +158,31 @@
           <input formControlName="bonusCorpoACorpo" type="number" />
         </div>
       </div>
-          <div class="bonusContainer">
-            <div class="bonusContainerResistencia">
-              <div class="sectionTitle">
-                <h3>Resistências</h3>
-                <button type="button" (click)="adicionarResistencia()">Adicionar Resistência</button>
-              </div>
-              <div formArrayName="resistencias">
-                <div class="bonusContainerUnico" *ngFor="let p of resistencias.controls; let i = index" [formGroupName]="i">
-                  <input placeholder="Resistencia" formControlName="resistenciaNome" type="text">
-                  <input formControlName="resistenciaValor" class="inputNumberBonus" type="text" />
-                </div>
-              </div>
+      <div class="bonusContainer">
+        <div class="bonusContainerResistencia">
+          <div class="sectionTitle">
+            <h3>Resistências</h3>
+            <button type="button" (click)="adicionarResistencia()">Adicionar Resistência</button>
+          </div>
+          <div formArrayName="resistencias">
+            <div class="bonusContainerUnico" *ngFor="let p of resistencias.controls; let i = index" [formGroupName]="i">
+              <input placeholder="Resistencia" formControlName="resistenciaNome" type="text">
+              <input formControlName="resistenciaValor" class="inputNumberBonus" type="text" />
             </div>
+          </div>
+        </div>
 
-            <div class="outrosBonus" formArrayName="outrosBonus">
-              <div class="sectionTitle">
-                <h3>Outros Bônus</h3>
-                <button type="button" (click)="adicionarOutrosBonus()">Adicionar Bônus</button>
-              </div>
-                <div class="bonusContainerUnico" *ngFor="let p of outrosBonus.controls; let i = index" [formGroupName]="i">
-                  <input placeholder="outro bonus" type="text" formControlName="outroBonusNome">
-                  <input class="inputNumberBonus" type="number" formControlName="outroBonusValor" />
-                </div>
-            </div>
-          </div>   
+        <div class="outrosBonus" formArrayName="OutrosBonus">
+          <div class="sectionTitle">
+            <h3>Outros Bônus</h3>
+            <button type="button" (click)="adicionarOutrosBonus()">Adicionar Bônus</button>
+          </div>
+          <div class="bonusContainerUnico" *ngFor="let p of outrosBonus.controls; let i = index" [formGroupName]="i">
+            <input placeholder="outro bonus" type="text" formControlName="outroBonusNome">
+            <input class="inputNumberBonus" type="number" formControlName="outroBonusValor" />
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="ataques" formArrayName="ataques">
@@ -189,7 +190,7 @@
         <h2>Ataques</h2>
         <button type="button" (click)="adicionarAtaques()">Adicionar Ataque</button>
       </div>
-      
+
       <div class="ataque" *ngFor="let p of ataques.controls; let i = index" [formGroupName]="i">
         <label>
           Nome
@@ -213,7 +214,7 @@
         </label>
         <label>
           Munição
-          <input formControlName="ataqueMunicacao" type="text" />
+          <input formControlName="ataqueMunicao" type="text" />
         </label>
       </div>
     </div>

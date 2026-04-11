@@ -1,11 +1,11 @@
 <form [formGroup]="form">
-<div class="notas-page">
+<div class="notas-page" formGroupName="notas">
   <div class="notasTitleContainer">
     <h2>Notas</h2>
   </div>
   
   <label class="field">
-    <textarea  formControlName="nota" placeholder="Escreva sua nota..." ></textarea>
+    <textarea formControlName="nota" placeholder="Escreva sua nota..." ></textarea>
   </label>
 </div>
 </form>
