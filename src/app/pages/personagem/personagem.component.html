@@ -1,6 +1,5 @@
 <form [formGroup]="form">
   <div class="personagem" formGroupName="personagem">
-    <button type="button" (click)="teste()">testar</button>
     <div class="informacaoPersonagem" formGroupName="informacaoPersonagem">
       <div class="informacaoPersonagemTitleContainer">
         <h2>Informações do Personagem</h2>
@@ -167,7 +166,7 @@
           <div formArrayName="resistencias">
             <div class="bonusContainerUnico" *ngFor="let p of resistencias.controls; let i = index" [formGroupName]="i">
               <input placeholder="Resistencia" formControlName="resistenciaNome" type="text">
-              <input formControlName="resistenciaValor" class="inputNumberBonus" type="text" />
+              <input formControlName="resistenciaValor" class="inputNumberBonus" type="number" />
             </div>
           </div>
         </div>

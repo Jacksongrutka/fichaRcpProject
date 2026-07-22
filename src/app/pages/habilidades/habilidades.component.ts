@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, Subscription } from 'rxjs';
 import { FichaService } from '../../services/ficha.service';
+import { Ficha } from '../../models/ficha';
 
 @Component({
   selector: 'app-habilidades',
@@ -14,54 +15,89 @@ import { FichaService } from '../../services/ficha.service';
 export class HabilidadesComponent implements OnInit , OnDestroy {
 
   form!: FormGroup;
-  sub!: Subscription;
+  formSub!: Subscription;
+  updateSub!: Subscription;
+
+  private carregandoFormulario = false;
 
   constructor (private fb:FormBuilder, private fichaService:FichaService){}
 
   ngOnInit(){
-    this.form = this.fb.group({
-      habilidades: this.fb.group({
-        combatente:[null],
-        especialista:[null],
-        ocultista:[null],
-        poderes:this.fb.array([]),
-        ritual:this.fb.array([]),
-      })
-    });
+
+    this.iniciarFormulario();
+    this.atualizarFicha();
     
-    const ficha = this.fichaService.getFicha();
-    ficha.habilidades.poderes?.forEach(p => {
-      this.poderes.push(this.fb.group({
-        nome:[p.nome],
-        custo:[p.custo],
-        descricao:[p.descricao],
-      }));
-    });
-    ficha.habilidades.ritual?.forEach(r => {
-      this.rituais.push(this.fb.group({
-        nome:[r.nome],
-        custo:[r.custo],
-        componentes:[r.componentes],
-        descricao:[r.descricao],
-      }));
-    });
-
-    this.form.get('habilidades')?.patchValue(ficha.habilidades);
-
-    this.sub = this.form.valueChanges.pipe(debounceTime(300)).subscribe( valor => {
-      this.fichaService.updateFicha(valor);
-    })
   };
   
   ngOnDestroy(): void {
-    this.sub?.unsubscribe();
+    this.formSub?.unsubscribe();
+    this.updateSub?.unsubscribe();
+  }
+
+  iniciarFormulario(){
+    this.form = this.fb.group({
+      habilidades: this.fb.group({
+        evolucao: this.fb.group({
+          combatente: [null],
+          especialista: [null],
+          ocultista: [null],
+        }),
+        poderes:this.fb.array([]),
+        rituais:this.fb.array([]),
+      })
+    });
+
+    this.formSub = this.form.valueChanges
+      .pipe(debounceTime(300))
+      .subscribe(valor => {
+        if (this.carregandoFormulario) {
+          return;
+        }
+        this.fichaService.updateFicha(valor);
+      });
+  }
+
+  atualizarFicha(){
+    this.updateSub = this.fichaService.ficha$.subscribe(ficha => {
+      this.carregandoFormulario = true;
+      this.carregarArrays(ficha);
+      this.atualizarFormulario(ficha);
+      this.carregandoFormulario = false;
+    });
+  }
+
+  carregarArrays(ficha: Ficha){
+  
+      this.poderes.clear({emitEvent:false});
+      this.rituais.clear({emitEvent:false});
+
+      ficha.habilidades.poderes?.forEach(p => {
+        this.poderes.push(this.fb.group({
+          nome:[p.nome],
+          custo:[p.custo],
+          descricao:[p.descricao],
+        }),{emitEvent:false})
+      })
+      ficha.habilidades.rituais?.forEach(r => {
+        this.rituais.push(this.fb.group({
+          nome:[r.nome],
+          custo:[r.custo],
+          componentes:[r.componentes],
+          descricao:[r.descricao],
+        }),{emitEvent:false})
+      })
+  }
+  atualizarFormulario(ficha: Ficha){
+    this.form.patchValue(ficha, {
+      emitEvent: false
+    })
   }
 
   get poderes (){
     return this.form.get(['habilidades','poderes']) as FormArray;
   }
   get rituais(){
-    return this.form.get(['habilidades','ritual']) as FormArray;
+    return this.form.get(['habilidades','rituais']) as FormArray;
   }
   adicionarPoder(){
     const novoPoder = this.fb.group({

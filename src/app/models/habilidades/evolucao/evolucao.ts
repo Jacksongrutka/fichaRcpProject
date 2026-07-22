@@ -1,4 +1,5 @@
 export interface Evolucao{
-    nome: string;
-    valor: number;
+    combatente: number;
+    especialista: number;
+    ocultista: number;
 }

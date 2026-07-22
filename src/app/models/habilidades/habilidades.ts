@@ -3,7 +3,7 @@ import { Poder } from "./poderes/poder";
 import { Ritual } from "./rituais/ritual";
 
 export interface Habilidades{
-    evolucoes: Evolucao[];
+    evolucao: Evolucao;
     poderes: Poder[];
-    ritual: Ritual[];
+    rituais: Ritual[];
 }

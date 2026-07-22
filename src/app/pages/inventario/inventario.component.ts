@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, Subscription } from 'rxjs';
 import { FichaService } from '../../services/ficha.service';
+import { Ficha } from '../../models/ficha';
 
 @Component({
   selector: 'app-inventario',
@@ -14,37 +15,67 @@ import { FichaService } from '../../services/ficha.service';
 export class InventarioComponent implements OnInit , OnDestroy {
   
   form!: FormGroup;
-  sub!: Subscription;
+  formSub!: Subscription;
+  updateSub!: Subscription;
 
+  carregandoFormulario = false;
   constructor(private fb:FormBuilder , private fichaService:FichaService){};
 
   ngOnInit(){
     
+    this.iniciarFormulario();
+    this.atualizarFicha();
+
+  }
+
+  ngOnDestroy(): void {
+    this.formSub?.unsubscribe();
+    this.updateSub?.unsubscribe();
+  }
+
+  iniciarFormulario(){
     this.form = this.fb.group({
       inventario: this.fb.group({
         dinheiro:[null],
         item:this.fb.array([]),
       })
     });
-
-    const ficha = this.fichaService.getFicha();
-    ficha.inventario.item?.forEach(item => {
-      this.itens.push(this.fb.group({
-        nome:[item.nome],
-        quantidade:[item.quantidade],
-        descricao:[item.descricao],
-      }));
+    this.formSub = this.form.valueChanges
+      .pipe(debounceTime(300))
+      .subscribe(valor => {
+        if (this.carregandoFormulario) {
+          return;
+        }
+        this.fichaService.updateFicha(valor);
+      });
+  }
+  atualizarFicha(){
+    this.updateSub = this.fichaService.ficha$.subscribe(ficha => {
+      this.carregandoFormulario = true;
+      this.carregarArrays(ficha);
+      this.atualizarFormulario(ficha);
+      this.carregandoFormulario = false;
     });
-
-    this.form.get('inventario')?.patchValue(ficha.inventario);
-
-    this.sub = this.form.valueChanges.pipe(debounceTime(300)).subscribe(value => {
-      this.fichaService.updateFicha(value);
-    })
   }
 
-  ngOnDestroy(): void {
-    this.sub?.unsubscribe();
+  carregarArrays(ficha: Ficha){
+    this.updateSub = this.fichaService.ficha$.subscribe(ficha => {
+      
+      this.itens.clear({emitEvent:false})
+
+      ficha.inventario.item.forEach(i => {
+        this.itens.push(this.fb.group({
+          nome:[i.nome],
+          quantidade:[i.quantidade],
+          descricao:[i.descricao],
+        }),{emitEvent:false})
+      })
+    });
+  }
+  atualizarFormulario(ficha: Ficha){
+    this.form.patchValue(ficha, {
+      emitEvent: false
+    })
   }
 
   get itens(){
@@ -53,7 +84,7 @@ export class InventarioComponent implements OnInit , OnDestroy {
 
   adicionarItem(){
     const novoItem = this.fb.group({
-      mome:[""],
+      nome:[""],
       quantidade:[null],
       descricao:[""],
      });

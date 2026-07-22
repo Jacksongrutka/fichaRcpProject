@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, FormArray} from '@angular/forms';
 import { debounceTime, Subscription } from 'rxjs';
 import { FichaService } from '../../services/ficha.service';
+import { Ficha } from '../../models/ficha';
 
 @Component({
   selector: 'app-personagem',
@@ -14,11 +15,26 @@ import { FichaService } from '../../services/ficha.service';
 export class PersonagemComponent implements OnInit , OnDestroy {
   
   form!: FormGroup; 
-  sub!: Subscription;
+  formSub!: Subscription;
+  updateSub!: Subscription;
+
+  private carregandoFormulario = false;
 
   constructor(private fb:FormBuilder , private fichaService:FichaService){}
 
   ngOnInit(){
+    
+    this.iniciarFormulario();
+    this.atualizarFicha();
+
+  }
+
+  ngOnDestroy(): void {
+    this.formSub?.unsubscribe();
+    this.updateSub?.unsubscribe();
+  }
+  
+  iniciarFormulario(){
     this.form = this.fb.group({
       personagem: this.fb.group({
         informacaoPersonagem: this.fb.group({
@@ -59,28 +75,64 @@ export class PersonagemComponent implements OnInit , OnDestroy {
       })
     });
 
-    const ficha = this.fichaService.getFicha();
+    this.formSub = this.form.valueChanges
+      .pipe(debounceTime(300))
+      .subscribe(valor => {
+        console.log("personagem enviou")
+        if (this.carregandoFormulario) {
+          return;
+        }
+        this.fichaService.updateFicha(valor);
+      });
+  }
+  atualizarFicha() {
+  this.updateSub = this.fichaService.ficha$.subscribe(ficha => {
+    this.carregandoFormulario = true;
+    this.carregarArrays(ficha);
+    this.atualizarFormulario(ficha);
+    this.carregandoFormulario = false;
+  });
+}
+  carregarArrays(ficha: Ficha){
 
-    
+    this.pericias.clear({
+      emitEvent:false
+    });
+    this.resistencias.clear({
+      emitEvent: false
+    });
+    this.outrosBonus.clear({
+      emitEvent: false
+    });
+    this.ataques.clear({
+      emitEvent: false
+    });
+
     ficha.personagem.pericias.forEach(p => {
       this.pericias.push(this.fb.group({
-        periciaNome:[p.periciaNome],
-        periciaValor:[p.periciaValor],
-      }));
-    });
+          periciaNome:[p.periciaNome],
+          periciaValor:[p.periciaValor],
+        }),{
+          emitEvent:false
+        });
+      });
 
     ficha.personagem.bonus.resistencias?.forEach(r => {
       this.resistencias.push(this.fb.group({
         resistenciaNome:[r.tipo],
         resistenciaValor:[r.valor],
-      }));
+      }),{
+        emitEvent: false
+      });
     });
 
     ficha.personagem.bonus.OutrosBonus?.forEach(b => {
       this.outrosBonus.push(this.fb.group({
         outroBonusNome:[b.nome],
         outroBonusValor:[b.valor],
-      }));
+      }), {
+        emitEvent:false
+      });
     });
 
     ficha.personagem.ataques?.forEach(i => {
@@ -92,27 +144,16 @@ export class PersonagemComponent implements OnInit , OnDestroy {
         ataqueEfeito:[i.ataqueEfeito],
         ataqueMunicao:[i.ataqueMunicao],
 
-      }))
+      }), {
+        emitEvent:false
+      });
     });
-          
-
-    this.form.get('personagem')?.patchValue({
-      informacaoPersonagem: ficha.personagem.informacaoPersonagem,
-      atributos: ficha.personagem.atributos,
-      status: ficha.personagem.status,
-      bonus: ficha.personagem.bonus,
-    });
-
-    this.sub = this.form.valueChanges.pipe(debounceTime(300)).subscribe(valor => {
-      this.fichaService.updateFicha(valor);
-    });
-
-    }
-
-    ngOnDestroy(): void {
-      this.sub?.unsubscribe();
-    }
-
+  }
+  atualizarFormulario(ficha: Ficha){
+    this.form.patchValue(ficha, {
+      emitEvent: false
+    })
+  }
   get pericias(){
     return this.form.get(['personagem', 'pericias']) as FormArray;
   }
@@ -159,8 +200,4 @@ export class PersonagemComponent implements OnInit , OnDestroy {
     });
     this.ataques.push(novoAtaque)
   }
-  teste(){
-    console.log(this.form.value);
-  }
-
 }

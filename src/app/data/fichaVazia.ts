@@ -181,9 +181,13 @@ export const fichaVazia: Ficha = {
         ataques: [],
     },
     habilidades: {
-        evolucoes: [],
+        evolucao: {
+            combatente: 0,
+            especialista: 0,
+            ocultista: 0,
+        },
         poderes: [],
-        ritual: [],
+        rituais: [],
     },
     inventario: {
         dinheiro: 0,

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Ficha } from '../models/ficha';
 import { fichaVazia } from '../data/fichaVazia';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -9,24 +10,44 @@ import { fichaVazia } from '../data/fichaVazia';
 
 export class FichaService {
 
-  private ficha: Ficha =  { ... fichaVazia };
-  
+  private fichaSubject = new BehaviorSubject<Ficha>(fichaVazia);
+  ficha$ = this.fichaSubject.asObservable();
 
-  constructor( ) {}
+  constructor() {
+      this.carregarFicha();
+    }
 
     setFicha(novaFicha: Ficha){
-      this.ficha = novaFicha;
+      this.fichaSubject.next(novaFicha)
     }
     
     getFicha(): Readonly<Ficha>{
-      return structuredClone(this.ficha);
+      return structuredClone(this.fichaSubject.getValue());
     }
 
     resetFicha(){
-      this.ficha = { ... fichaVazia };
+      localStorage.removeItem("ficha");
+      this.fichaSubject.next(structuredClone(fichaVazia));
+      this.salvarFicha();
     }
     updateFicha(parcial: Partial<Ficha>){
-      this.ficha = { ...this.ficha , ...parcial };
+      this.fichaSubject.next({ ...this.fichaSubject.getValue() , ...parcial });
+      this.salvarFicha();
     }
+
+    private salvarFicha(){
+      localStorage.setItem(
+        "ficha",
+        JSON.stringify(this.fichaSubject.getValue())
+      );
+    };
+
+    public carregarFicha(){
+      const fichaSalvaJson = localStorage.getItem("ficha");
+
+      if (fichaSalvaJson !== null){
+        this.fichaSubject.next(JSON.parse(fichaSalvaJson));
+      }
+    };
      
 }
