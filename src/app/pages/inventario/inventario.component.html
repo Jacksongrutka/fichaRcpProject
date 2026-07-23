@@ -29,7 +29,11 @@
             Descrição
             <textarea formControlName="descricao"></textarea>
           </label>
+          <div class="deleteButtonContainer">
+            <app-delete-button (clicked)="removerItem(itens, i)"></app-delete-button>
+          </div>
         </div>
+        
       </div>
     </div>
   </div>

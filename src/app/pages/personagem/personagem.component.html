@@ -145,6 +145,7 @@
           <label>
             <input class="inputNumber" formControlName="periciaValor" type="number">
           </label>
+          <app-delete-button (clicked)="removerItem(pericias, i)"></app-delete-button>
         </div>
       </div>
     </div>
@@ -167,6 +168,7 @@
             <div class="bonusContainerUnico" *ngFor="let p of resistencias.controls; let i = index" [formGroupName]="i">
               <input placeholder="Resistencia" formControlName="resistenciaNome" type="text">
               <input formControlName="resistenciaValor" class="inputNumberBonus" type="number" />
+              <app-delete-button (clicked)="removerItem(resistencias, i)"></app-delete-button>
             </div>
           </div>
         </div>
@@ -179,6 +181,7 @@
           <div class="bonusContainerUnico" *ngFor="let p of outrosBonus.controls; let i = index" [formGroupName]="i">
             <input placeholder="outro bonus" type="text" formControlName="outroBonusNome">
             <input class="inputNumberBonus" type="number" formControlName="outroBonusValor" />
+            <app-delete-button (clicked)="removerItem(outrosBonus, i)"></app-delete-button>
           </div>
         </div>
       </div>
@@ -215,6 +218,7 @@
           Munição
           <input formControlName="ataqueMunicao" type="text" />
         </label>
+        <app-delete-button (clicked)="removerItem(ataques, i)"></app-delete-button>
       </div>
     </div>
   </div>

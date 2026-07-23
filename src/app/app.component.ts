@@ -19,4 +19,10 @@ export class AppComponent {
       }
     this.fichaService.resetFicha();
   }
+  baixarFicha(){
+    this.fichaService.downloadFicha();
+  }
+  importarFicha(){
+    this.fichaService.uploadFicha();
+  }
 }

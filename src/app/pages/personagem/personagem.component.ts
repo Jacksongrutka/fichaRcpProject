@@ -4,11 +4,12 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, FormArray} from '@angular/
 import { debounceTime, Subscription } from 'rxjs';
 import { FichaService } from '../../services/ficha.service';
 import { Ficha } from '../../models/ficha';
+import { DeleteButtonComponent } from '../../components/deleteButton/deleteButton.component';
 
 @Component({
   selector: 'app-personagem',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, DeleteButtonComponent],
   templateUrl: './personagem.component.html',
   styleUrls: ['./personagem.component.css']
 })
@@ -199,5 +200,8 @@ export class PersonagemComponent implements OnInit , OnDestroy {
       ataqueMunicao:[""],
     });
     this.ataques.push(novoAtaque)
+  }
+  removerItem(array: FormArray , index: number):void{
+    array.removeAt(index);
   }
 }

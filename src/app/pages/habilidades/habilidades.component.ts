@@ -4,11 +4,12 @@ import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular
 import { debounceTime, Subscription } from 'rxjs';
 import { FichaService } from '../../services/ficha.service';
 import { Ficha } from '../../models/ficha';
+import { DeleteButtonComponent } from '../../components/deleteButton/deleteButton.component';
 
 @Component({
   selector: 'app-habilidades',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, DeleteButtonComponent],
   templateUrl: './habilidades.component.html',
   styleUrls: ['./habilidades.component.css']
 })
@@ -116,5 +117,8 @@ export class HabilidadesComponent implements OnInit , OnDestroy {
     })
 
     this.rituais.push(novoRitual);
+  }
+  removerItem(array: FormArray, index: number):void{
+    array.removeAt(index);
   }
 }

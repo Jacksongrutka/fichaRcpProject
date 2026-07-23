@@ -52,6 +52,10 @@
           Descrição
           <textarea formControlName="descricao"></textarea>
         </label>
+        <div class="deleteButtonContainer">
+          <app-delete-button (clicked)="removerItem(poderes, i)"></app-delete-button>
+        </div>
+        
       </div>
     </div>
 
@@ -83,6 +87,10 @@
           Descrição
           <textarea formControlName="descricao"></textarea>
         </label>
+        <div class="deleteButtonContainer">
+           <app-delete-button (clicked)="removerItem(rituais, i)"></app-delete-button>
+        </div>
+       
       </div>
     </div>
   </div>

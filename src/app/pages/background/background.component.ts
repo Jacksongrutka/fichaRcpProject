@@ -4,10 +4,11 @@ import { FormArray, ReactiveFormsModule, FormBuilder, FormGroup } from '@angular
 import { debounceTime, Subscription } from 'rxjs';
 import { FichaService } from '../../services/ficha.service';
 import { Ficha } from '../../models/ficha';
+import { DeleteButtonComponent } from '../../components/deleteButton/deleteButton.component';
 @Component({
   selector: 'app-background',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, DeleteButtonComponent],
   templateUrl: './background.component.html',
   styleUrls: ['./background.component.css']
 })
@@ -97,6 +98,9 @@ export class BackgroundComponent implements OnInit , OnDestroy {
     });
 
     this.pessoasImportantes.push(novaPessoa);
+  }
+  removerItem(array: FormArray , index: number){
+    array.removeAt(index);
   }
   
 }

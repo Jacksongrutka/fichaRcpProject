@@ -67,5 +67,10 @@ input {
   resize: vertical;
   flex: 1;
 }
+.deleteButtonContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 

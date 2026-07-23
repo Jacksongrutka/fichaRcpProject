@@ -108,3 +108,8 @@ textarea {
   display: flex;
   flex-direction: row;
 }
+.deleteButtonContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

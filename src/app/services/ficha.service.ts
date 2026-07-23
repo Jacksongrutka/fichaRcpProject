@@ -49,5 +49,41 @@ export class FichaService {
         this.fichaSubject.next(JSON.parse(fichaSalvaJson));
       }
     };
+
+    public downloadFicha(){
+      const json = JSON.stringify(this.fichaSubject.getValue(), null ,2);
+
+      const blob = new Blob([json], {
+        type: 'application/json'
+      });
+
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      const nome = this.fichaSubject.getValue().personagem.informacaoPersonagem.nome || 'SemNome';
+      a.download = `Ficha-${nome}.json`;
+      a.click();
+
+      URL.revokeObjectURL(url);
+    };
+    public uploadFicha(){
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.json, application/json';
+
+      input.onchange = async () => {
+        const file = input.files?.[0];
+          if(!file){
+            return;
+          }
+        const texto = await file.text();
+        const ficha = JSON.parse(texto);
+
+        this.setFicha(ficha);
+      }
+
+      input.click();
+
+    };
      
 }
