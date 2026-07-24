@@ -86,10 +86,13 @@ export class PersonagemComponent implements OnInit , OnDestroy {
         this.fichaService.updateFicha(valor);
       });
   }
+  
   atualizarFicha() {
   this.updateSub = this.fichaService.ficha$.subscribe(ficha => {
     this.carregandoFormulario = true;
-    this.carregarArrays(ficha);
+    if(this.arrayMudouTamanho(ficha)){
+      this.carregarArrays(ficha);
+    }
     this.atualizarFormulario(ficha);
     this.carregandoFormulario = false;
   });
@@ -154,6 +157,26 @@ export class PersonagemComponent implements OnInit , OnDestroy {
     this.form.patchValue(ficha, {
       emitEvent: false
     })
+  }
+  private arrayMudouTamanho(ficha: Ficha): boolean {
+
+    if (this.pericias.length !== ficha.personagem.pericias.length) {
+      return true;
+    }
+
+    if (this.resistencias.length !== ficha.personagem.bonus.resistencias.length) {
+      return true;
+    }
+
+    if (this.outrosBonus.length !== ficha.personagem.bonus.OutrosBonus.length) {
+      return true;
+    }
+
+    if (this.ataques.length !== ficha.personagem.ataques.length) {
+      return true;
+    }
+
+    return false;
   }
   get pericias(){
     return this.form.get(['personagem', 'pericias']) as FormArray;

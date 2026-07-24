@@ -53,7 +53,9 @@ export class InventarioComponent implements OnInit , OnDestroy {
   atualizarFicha(){
     this.updateSub = this.fichaService.ficha$.subscribe(ficha => {
       this.carregandoFormulario = true;
-      this.carregarArrays(ficha);
+      if(this.arrayMudouTamanho(ficha)){
+        this.carregarArrays(ficha);
+      }
       this.atualizarFormulario(ficha);
       this.carregandoFormulario = false;
     });
@@ -78,7 +80,14 @@ export class InventarioComponent implements OnInit , OnDestroy {
       emitEvent: false
     })
   }
+  private arrayMudouTamanho(ficha: Ficha): boolean {
 
+    if (this.itens.length !== ficha.inventario.item.length) {
+      return true;
+    }
+
+    return false;
+  }
   get itens(){
       return this.form.get(['inventario','item']) as FormArray
     }

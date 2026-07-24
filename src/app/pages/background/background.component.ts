@@ -27,14 +27,14 @@ export class BackgroundComponent implements OnInit , OnDestroy {
       this.iniciarFormulario();
       this.atualizarFicha();
       
-    };
+  };
     
-    ngOnDestroy(): void {
+  ngOnDestroy(): void {
       this.formSub?.unsubscribe();
       this.updateSub?.unsubscribe();
-    }
+  }
   
-    iniciarFormulario(){
+  iniciarFormulario(){
       this.form = this.fb.group({
       background: this.fb.group({
         aparencia: this.fb.group({
@@ -43,12 +43,12 @@ export class BackgroundComponent implements OnInit , OnDestroy {
           corDosOlhos:[""],
           membrosDecepados:[""],
           aparenciaGeral:[""],
-        }),
+  }),
         historia:[""],
         pessoasImportantes:this.fb.array([]),
         traumas:[""],
         ancoras:[""],
-      })
+    })
     })
   
       this.formSub = this.form.valueChanges
@@ -59,18 +59,20 @@ export class BackgroundComponent implements OnInit , OnDestroy {
           }
           this.fichaService.updateFicha(valor);
         });
-    }
+  }
   
-    atualizarFicha(){
+  atualizarFicha(){
       this.updateSub = this.fichaService.ficha$.subscribe(ficha => {
         this.carregandoFormulario = true;
-        this.carregarArrays(ficha);
+        if(this.arrayMudouTamanho(ficha)){
+          this.carregarArrays(ficha);
+        }
         this.atualizarFormulario(ficha);
         this.carregandoFormulario = false;
       });
-    }
+  }
   
-    carregarArrays(ficha: Ficha){
+  carregarArrays(ficha: Ficha){
     
         this.pessoasImportantes.clear({emitEvent:false});
   
@@ -80,12 +82,21 @@ export class BackgroundComponent implements OnInit , OnDestroy {
             relacionamento:[p.relacionamento],
           }),{emitEvent:false})
         })
-    }
-    atualizarFormulario(ficha: Ficha){
+  }
+  atualizarFormulario(ficha: Ficha){
       this.form.patchValue(ficha, {
         emitEvent: false
       })
+  }
+
+  private arrayMudouTamanho(ficha: Ficha): boolean {
+
+    if (this.pessoasImportantes.length !== ficha.background.pessoasImportantes.length) {
+      return true;
     }
+
+    return false;
+  }
 
   get pessoasImportantes(){
     return this.form.get(['background','pessoasImportantes']) as FormArray;

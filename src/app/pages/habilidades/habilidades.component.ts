@@ -61,7 +61,9 @@ export class HabilidadesComponent implements OnInit , OnDestroy {
   atualizarFicha(){
     this.updateSub = this.fichaService.ficha$.subscribe(ficha => {
       this.carregandoFormulario = true;
-      this.carregarArrays(ficha);
+      if(this.arrayMudouTamanho(ficha)){
+        this.carregarArrays(ficha);
+      }
       this.atualizarFormulario(ficha);
       this.carregandoFormulario = false;
     });
@@ -93,7 +95,18 @@ export class HabilidadesComponent implements OnInit , OnDestroy {
       emitEvent: false
     })
   }
+  private arrayMudouTamanho(ficha: Ficha): boolean {
 
+    if (this.poderes.length !== ficha.habilidades.poderes.length) {
+      return true;
+    }
+
+    if (this.rituais.length !== ficha.habilidades.rituais.length) {
+      return true;
+    }
+
+    return false;
+  }
   get poderes (){
     return this.form.get(['habilidades','poderes']) as FormArray;
   }
