@@ -76,14 +76,50 @@ export class FichaService {
           if(!file){
             return;
           }
-        const texto = await file.text();
-        const ficha = JSON.parse(texto);
+      const texto = await file.text();
 
-        this.setFicha(ficha);
+      const ficha = this.lerFicha(texto);
+      if (!ficha){
+        alert("o arquivo nao é um JSON valido");
+        return;
       }
 
-      input.click();
+      if(!this.validarFicha(ficha)){
+        alert("o arquivo nao é uma ficha valida");
+        return;
+      }
 
+      this.setFicha(ficha);
+
+    }
+      input.click();
     };
-     
+    private validarFicha(ficha: any):boolean{
+
+        if(!ficha.personagem){
+          return false;
+        }
+        if(!ficha.habilidades){
+          return false;
+        }
+        if(!ficha.inventario){
+          return false;
+        }
+        if(!ficha.background){
+          return false;
+        }
+        if(!ficha.notas){
+          return false;
+        }
+        return true;
+    }
+    private lerFicha(texto: string){
+      try{
+        return JSON.parse(texto);
+      }catch{
+        return undefined;
+      }
+    }
+  
 }
+
