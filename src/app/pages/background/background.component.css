@@ -38,6 +38,9 @@
   flex-direction: column;
   gap: 0.25rem;
 }
+.field textarea{
+  min-height: 200px;
+}
 .pessoas-importantes .pessoasImportantesItensContainer{
   display: grid;
   grid-template-columns: 1fr 1fr;

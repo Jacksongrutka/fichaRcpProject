@@ -62,8 +62,7 @@ export class InventarioComponent implements OnInit , OnDestroy {
   }
 
   carregarArrays(ficha: Ficha){
-    this.updateSub = this.fichaService.ficha$.subscribe(ficha => {
-      
+
       this.itens.clear({emitEvent:false})
 
       ficha.inventario.item.forEach(i => {
@@ -72,8 +71,7 @@ export class InventarioComponent implements OnInit , OnDestroy {
           quantidade:[i.quantidade],
           descricao:[i.descricao],
         }),{emitEvent:false})
-      })
-    });
+      });
   }
   atualizarFormulario(ficha: Ficha){
     this.form.patchValue(ficha, {
