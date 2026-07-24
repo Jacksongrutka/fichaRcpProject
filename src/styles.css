@@ -2,7 +2,7 @@
 body{
     background-image: 
     linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
-    url("/textures/rastrodecthulhu3.jpg");
+    url("assets/textures/rastrodecthulhu3.jpg");
     
     background-repeat: no-repeat;
     background-size: cover;
