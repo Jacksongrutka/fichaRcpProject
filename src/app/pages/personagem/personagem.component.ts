@@ -5,11 +5,14 @@ import { debounceTime, Subscription } from 'rxjs';
 import { FichaService } from '../../services/fichaService/ficha.service';
 import { Ficha } from '../../models/ficha';
 import { DeleteButtonComponent } from '../../components/deleteButton/deleteButton.component';
+import { RollButtonComponent } from '../../components/rollButton/rollButton.component';
+import { DadosService } from '../../services/diceService/dados.service';
+import { ModalComponent } from '../../components/modals/modal/modal.component';
 
 @Component({
   selector: 'app-personagem',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, DeleteButtonComponent],
+  imports: [CommonModule, ReactiveFormsModule, DeleteButtonComponent, RollButtonComponent, ModalComponent],
   templateUrl: './personagem.component.html',
   styleUrls: ['./personagem.component.css']
 })
@@ -20,8 +23,9 @@ export class PersonagemComponent implements OnInit , OnDestroy {
   updateSub!: Subscription;
 
   private carregandoFormulario = false;
+  modalAberto = false;
 
-  constructor(private fb:FormBuilder , private fichaService:FichaService){}
+  constructor(private fb:FormBuilder , private fichaService:FichaService , private dadosService:DadosService){}
 
   ngOnInit(){
     
@@ -226,5 +230,14 @@ export class PersonagemComponent implements OnInit , OnDestroy {
   }
   removerItem(array: FormArray , index: number):void{
     array.removeAt(index);
+  }
+  rolarDados(){
+    console.log(this.dadosService.rolarDados(1,20));
+  }
+  abrirModal(){
+    this.modalAberto = true;
+  }
+  fecharModal(){
+    this.modalAberto = false;
   }
 }

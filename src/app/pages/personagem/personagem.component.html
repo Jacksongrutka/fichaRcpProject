@@ -146,6 +146,7 @@
             <input class="inputNumber" formControlName="periciaValor" type="number">
           </label>
           <app-delete-button (clicked)="removerItem(pericias, i)"></app-delete-button>
+          <app-roll-button (clicked)="abrirModal()"></app-roll-button>
         </div>
       </div>
     </div>
@@ -223,3 +224,4 @@
     </div>
   </div>
 </form>
+<app-modal [modalAberto]="modalAberto" (clicked)="fecharModal()"></app-modal>

@@ -1,0 +1,25 @@
+.rollButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  color: #4CAF50;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.rollButton:hover,
+.rollButton:focus-visible {
+  background-color: rgba(201, 42, 42, 0.12);
+  transform: scale(1.05);
+}
+
+.diceIcon {
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: 700;
+}

@@ -10,8 +10,6 @@ export class DadosService {
   public rolarDados(qtdRolagens: number , numeroDeFaces: number): Array<number>{
     const valores = this.gerarNumeroAleatorio(qtdRolagens);
 
-    console.log(valores);
-
     return Array.from(valores, valor => (valor%numeroDeFaces) +1)
   }
 
