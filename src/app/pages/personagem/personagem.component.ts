@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormArray} from '@angular/forms';
 import { debounceTime, Subscription } from 'rxjs';
-import { FichaService } from '../../services/ficha.service';
+import { FichaService } from '../../services/fichaService/ficha.service';
 import { Ficha } from '../../models/ficha';
 import { DeleteButtonComponent } from '../../components/deleteButton/deleteButton.component';
 

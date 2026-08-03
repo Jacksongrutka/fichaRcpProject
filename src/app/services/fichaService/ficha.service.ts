@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Ficha } from '../models/ficha';
-import { fichaVazia } from '../data/fichaVazia';
+import { Ficha } from '../../models/ficha';
+import { fichaVazia } from '../../data/fichaVazia';
 import { BehaviorSubject } from 'rxjs';
 
 
