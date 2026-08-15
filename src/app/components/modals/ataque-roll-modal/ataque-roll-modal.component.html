@@ -1,0 +1,74 @@
+<form [formGroup]="ataqueRollForm" >
+<div class="diceRollComponentContainer" *ngIf="!resultadoDeveAparecer">
+    <div class="diceRollComponentTitle">
+        <p>Rolagem de teste</p>
+    </div>
+    <div class="diceRollOptionsContainer">
+
+        <div class="diceRollNumbers">
+            <p>Quantidade de dados</p>
+            <div class="inputContainer">
+                <input formControlName="qtdDados" type="number">
+            </div>
+            
+        </div>
+        <div class="rollTypeContainer">
+            <button 
+                type="button"
+                [class.active]="ataqueRollForm.value.tipoVantagem === 'desvantagem'"
+                (click)="selecionarTipoVantagem('desvantagem')">
+                Desvantagem
+            </button>
+            <button 
+                type="button"
+                [class.active]="ataqueRollForm.value.tipoVantagem === 'normal'"
+                (click)="selecionarTipoVantagem('normal')">
+                Normal
+            </button>
+            <button 
+                type="button"
+                [class.active]="ataqueRollForm.value.tipoVantagem === 'vantagem'"
+                (click)="selecionarTipoVantagem('vantagem')">
+                Vantagem
+            </button>
+        </div>
+        <div class="danoRollContainer">
+            <p>dano</p>
+            <div class="inputContainer">
+                <input formControlName="danoAtaque" type="text">
+            </div>
+        </div>
+        
+    </div>
+    <div class="closeWindonsButtonsContainer">
+        <button type="button" (click)="rolarDados()">Roll</button>
+        <button type="button" (click)="cancelarButtonClicked()">Cancelar</button>
+    </div>
+</div>
+<div class="diceRollComponentContainer" *ngIf="resultadoDeveAparecer">
+    <div class="resultadoTesteTitleContainer">
+        <p [class]="classeResultado">{{resultadoTeste}}</p>
+    </div>
+    <div class="informacoesTesteContainer">
+        <div class="informacoesTextContainer">
+            <p>O valor dos dados no teste foram: {{dadosFinalTesteRolados}}</p>
+        </div>
+        <div class="informacoesTextContainer">
+            <p>Atributo: {{valorPericiaUsada}}</p>
+        </div>
+        <div class="danoContainer">
+            <div class="dadosDanoContainer">
+            <p>dados do dano rolado: {{dadosFinalDanoRolado}}</p>
+            </div>
+            <div class="danoSomadoContainer">
+                <div class="somaDano">
+                <p>soma do dano: {{resultadoSomado}} </p>
+                </div>
+                <div class="criticoDano">
+                    <p>valor do critico: {{danoCritico}} </p>
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>
+</form>

@@ -6,13 +6,17 @@ import { FichaService } from '../../services/fichaService/ficha.service';
 import { Ficha } from '../../models/ficha';
 import { DeleteButtonComponent } from '../../components/deleteButton/deleteButton.component';
 import { RollButtonComponent } from '../../components/rollButton/rollButton.component';
-import { DadosService } from '../../services/diceService/dados.service';
 import { ModalComponent } from '../../components/modals/modal/modal.component';
+import { ModalDiceRollComponent } from '../../components/modals/modal-dice-roll/modal-dice-roll.component';
+import { Atributos } from '../../models/personagem/atributos';
+import { AtaqueRollModalComponent } from '../../components/modals/ataque-roll-modal/ataque-roll-modal.component';
+
+export enum ModalType { DiceRoll = "DiceRoll" , ataqueRoll = "ataqueRoll" }
 
 @Component({
   selector: 'app-personagem',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, DeleteButtonComponent, RollButtonComponent, ModalComponent],
+  imports: [CommonModule, ReactiveFormsModule, DeleteButtonComponent, RollButtonComponent, ModalComponent, ModalDiceRollComponent, AtaqueRollModalComponent],
   templateUrl: './personagem.component.html',
   styleUrls: ['./personagem.component.css']
 })
@@ -22,10 +26,15 @@ export class PersonagemComponent implements OnInit , OnDestroy {
   formSub!: Subscription;
   updateSub!: Subscription;
 
+  ModalType = ModalType;
+
   private carregandoFormulario = false;
   modalAberto = false;
+  modalAtivo: ModalType | null = null;
+  valorPericiaUsada = 0;
+  danoAtaque: string = "";
 
-  constructor(private fb:FormBuilder , private fichaService:FichaService , private dadosService:DadosService){}
+  constructor(private fb:FormBuilder , private fichaService:FichaService){}
 
   ngOnInit(){
     
@@ -231,13 +240,32 @@ export class PersonagemComponent implements OnInit , OnDestroy {
   removerItem(array: FormArray , index: number):void{
     array.removeAt(index);
   }
-  rolarDados(){
-    console.log(this.dadosService.rolarDados(1,20));
+  pegarValorPericia(index: number){
+    const pericia = this.pericias.at(index);
+    this.valorPericiaUsada = pericia.value.periciaValor;
   }
-  abrirModal(){
+  abrirModal(modalAtual: ModalType){
+    this.modalAtivo = modalAtual;
     this.modalAberto = true;
   }
   fecharModal(){
     this.modalAberto = false;
+  }
+  pegarValorAtributo(atributo: keyof Atributos){
+    this.valorPericiaUsada = this.fichaService.getFicha().personagem.atributos[atributo]
+    console.log(this.valorPericiaUsada)
+  }
+  pegarValorPericiaAtaque(index: number){
+    const ataque = this.ataques.at(index)
+    const ataquePericiaUsada = ataque.value.ataquePericiaUsada
+    const pericia = this.pericias.controls.find(
+      controle => controle.value.periciaNome === ataquePericiaUsada
+    )
+    this.valorPericiaUsada = pericia?.value.periciaValor
+  }
+  pegarDanoAtaque(index: number){
+    const ataque = this.ataques.at(index)
+    this.danoAtaque = ataque.value.ataqueDano
+    console.log("oi")
   }
 }

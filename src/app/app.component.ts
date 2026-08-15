@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet,RouterLink } from '@angular/router';
 import { FichaService } from './services/fichaService/ficha.service';
-import { DadosService } from './services/diceService/dados.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +11,7 @@ import { DadosService } from './services/diceService/dados.service';
 export class AppComponent {
   title = 'ficha-rcp-rpg';
 
-  constructor(private fichaService: FichaService , private dadosService: DadosService){}
+  constructor(private fichaService: FichaService){}
 
   novaFicha(){
     if(!confirm("se clicar em sim o conteudo nao salvo sera perdido. deseja continuar?")){
@@ -25,8 +24,5 @@ export class AppComponent {
   }
   importarFicha(){
     this.fichaService.uploadFicha();
-  }
-  rolarDados(){
-    console.log(this.dadosService.rolarDados(4, 20));
   }
 }

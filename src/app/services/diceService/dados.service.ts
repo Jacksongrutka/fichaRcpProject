@@ -19,4 +19,9 @@ export class DadosService {
     return array;
   }
 
+  interpretarExpressaoDano(expressaoRecebida: string){
+    const partes = expressaoRecebida.match(/[+-]?\d+d\d+|[+-]\d+/gi)
+    return partes
+  }
+
 }

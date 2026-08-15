@@ -49,42 +49,65 @@
       </div>
       <div class="atributosValoresContainer">
         <label>
-          Força
+          <a (click)="pegarValorAtributo('forca'); abrirModal(ModalType.DiceRoll)" >
+            Força
+          </a>
+          
           <input formControlName="forca" type="number" />
         </label>
 
         <label>
-          Destreza
+          <a (click)="pegarValorAtributo('destreza'); abrirModal(ModalType.DiceRoll)">
+            Destreza
+          </a>
+          
           <input formControlName="destreza" type="number" />
         </label>
 
         <label>
-          Constituição
+          <a (click)="pegarValorAtributo('constituicao'); abrirModal(ModalType.DiceRoll)">
+            Constituição
+          </a>
+          
           <input formControlName="constituicao" type="number" />
         </label>
 
         <label>
-          Tamanho
+          <a (click)="pegarValorAtributo('tamanho'); abrirModal(ModalType.DiceRoll)">
+            Tamanho
+          </a>
+          
           <input formControlName="tamanho" type="number" />
         </label>
 
         <label>
-          Inteligência
+          <a (click)="pegarValorAtributo('inteligencia'); abrirModal(ModalType.DiceRoll)">
+            Inteligência
+          </a>
+          
           <input formControlName="inteligencia" type="number" />
         </label>
 
         <label>
-          Sabedoria
+          <a (click)="pegarValorAtributo('sabedoria'); abrirModal(ModalType.DiceRoll)">
+            Sabedoria
+          </a>
+          
           <input formControlName="sabedoria" type="number" />
         </label>
 
         <label>
-          Carisma
+          <a (click)="pegarValorAtributo('carisma'); abrirModal(ModalType.DiceRoll)">
+            Carisma
+          </a>
+          
           <input formControlName="carisma" type="number" />
         </label>
 
         <label>
-          Poder
+          <a (click)="pegarValorAtributo('poder'); abrirModal(ModalType.DiceRoll)">
+            Poder
+          </a>
           <input formControlName="poder" type="number" />
         </label>
       </div>
@@ -146,7 +169,7 @@
             <input class="inputNumber" formControlName="periciaValor" type="number">
           </label>
           <app-delete-button (clicked)="removerItem(pericias, i)"></app-delete-button>
-          <app-roll-button (clicked)="abrirModal()"></app-roll-button>
+          <app-roll-button (clicked)="pegarValorPericia(i); abrirModal(ModalType.DiceRoll)"></app-roll-button>
         </div>
       </div>
     </div>
@@ -220,8 +243,12 @@
           <input formControlName="ataqueMunicao" type="text" />
         </label>
         <app-delete-button (clicked)="removerItem(ataques, i)"></app-delete-button>
+        <app-roll-button (clicked)="pegarValorPericiaAtaque(i) ; pegarDanoAtaque(i); abrirModal(ModalType.ataqueRoll)"></app-roll-button>
       </div>
     </div>
   </div>
 </form>
-<app-modal [modalAberto]="modalAberto" (clicked)="fecharModal()"></app-modal>
+<app-modal *ngIf="modalAberto" (clicked)="fecharModal()">
+  <app-modal-dice-roll (clicked)="fecharModal()" *ngIf="modalAtivo === 'DiceRoll'" [valorPericiaUsada]="valorPericiaUsada"></app-modal-dice-roll>
+  <app-ataque-roll-modal (clicked)="fecharModal()" *ngIf="modalAtivo === 'ataqueRoll'" [valorPericiaUsada]="valorPericiaUsada" [danoAtaqueInput]="danoAtaque" ></app-ataque-roll-modal>
+</app-modal>

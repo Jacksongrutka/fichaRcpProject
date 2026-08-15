@@ -1,0 +1,130 @@
+.diceRollComponentContainer{
+    display: flex;
+    flex-direction: column;
+}
+.diceRollComponentTitle{
+    display: flex;
+    justify-content: center;
+}
+.diceRollComponentTitle p{
+    margin:15px;
+}
+.diceRollOptionsContainer{
+    display: flex;
+    flex-direction: column;
+}
+.diceRollNumbers{
+    font-size: 1.5rem;
+    display: flex;
+}
+.diceRollNumbers .inputContainer {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.diceRollNumbers .inputContainer {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-left: 20px;
+    max-width: 80px;
+}
+.diceRollNumbers input{
+    font-size: 1rem;
+}
+.rollTypeContainer{
+    display: flex;
+    gap: 10px;
+}
+.rollTypeContainer button{
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1.5rem;
+}
+.rollTypeContainer .active{
+    background-color: black;
+    color: #4CAF50;
+}
+.closeWindonsButtonsContainer{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    padding: 20px;
+}
+.closeWindonsButtonsContainer button{
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1.5rem;
+}
+.resultadoTesteTitleContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.resultadoTesteTitleContainer p{
+    margin: 0;
+    font-size: 3rem;
+}
+.informaçoesTesteContainer{
+    display: flex;
+    flex-direction:column;
+}
+.informacoesTextContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.informacoesTesteContainer p{
+    margin: 0;
+    font-size: 1.5rem;
+}
+.desastre{
+    color: #7D220B;
+}
+.falha{
+    color: #FF2F00;
+}
+.sucesso-normal{
+    color: #61FFD1;
+}
+.sucesso-bom{
+    color: #2BFF62;
+}
+.sucesso-extremo{
+    color: #00FF1F;
+}
+.sucesso-extraordinario{
+    color: #006308;
+}
+.danoRollContainer{
+    display: flex;
+    align-items: center ;
+    margin-top: 10px;
+}
+.danoRollContainer input{
+    font-size: 1.5rem;
+}
+.danoRollContainer p{
+    margin: 0;
+    font-size: 1.5rem;
+    margin-right: 20px;
+}
+.danoContainer{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+.danoSomadoContainer{
+    display: flex;
+    margin-top: 10px;
+    gap: 30px;
+}

@@ -17,14 +17,34 @@
   background-color: white;
   color: black;
 
-  width: 300px;
-  height: 200px;
+  min-width: 500px;
 
-  padding: 20px;
-
-  border-radius: 8px;
+  border-radius: 20px;
+  overflow: hidden;
 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+}
+.modal .modalHeader {
+  background-color: #4CAF50;
+  display: flex;
+  width: 100%;
+  justify-content: end;
+}
+.modal .containerCloseButton{
+  display: flex;
+  min-height: 25px;
+  margin-right: 10px;
+}
+.modal .containerCloseButton button{
+  background: transparent;
+  border: 0;
+  border-radius: 10px;
+  color: #cfcfcf;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.modal .containerCloseButton button:hover {
+    background-color: rgba(255, 0, 0, 0.35);
+    color: white;
 }

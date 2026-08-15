@@ -1,0 +1,58 @@
+<form [formGroup]="diceRollForm">
+<div *ngIf="!resultadoDeveAparecer" class="diceRollComponentContainer">
+    <div class="diceRollComponentTitle">
+        <p>Rolagem de teste</p>
+    </div>
+    <div class="diceRollOptionsContainer">
+
+        <div class="diceRollNumbers">
+            <p>Quantidade de dados</p>
+            <div class="inputContainer">
+                <input formControlName="qtdDados" type="number">
+            </div>
+            
+        </div>
+        <div class="rollTypeContainer">
+            <button 
+                type="button"
+                [class.active]="diceRollForm.value.tipoVantagem === 'desvantagem'"
+                (click)="selecionarTipoVantagem('desvantagem')">
+                Desvantagem
+            </button>
+            <button 
+                type="button"
+                [class.active]="diceRollForm.value.tipoVantagem === 'normal'"
+                (click)="selecionarTipoVantagem('normal')">
+                Normal
+            </button>
+            <button 
+                type="button"
+                [class.active]="diceRollForm.value.tipoVantagem === 'vantagem'"
+                (click)="selecionarTipoVantagem('vantagem')">
+                Vantagem
+            </button>
+        </div>
+        
+    </div>
+    <div class="closeWindonsButtonsContainer">
+        <button (click)="rolarDados()" type="button">Roll</button>
+        <button (click)="cancelarButtonClicked()" type="button">Cancelar</button>
+    </div>
+</div>
+<div *ngIf="resultadoDeveAparecer" class="diceRollComponentContainer">
+    <div class="resultadoTesteTitleContainer">
+        <p [class]="classeResultado">{{resultadoTeste}}</p>
+    </div>
+    <div class="informacoesTesteContainer">
+        <div class="informacoesTextContainer">
+            <p>O valor dos dados foram, {{dadosRolados}}</p>
+        </div>
+        <div class="informacoesTextContainer">
+            <p>Atributo {{valorPericiaUsada}}</p>
+        </div>
+        
+    </div>
+    
+</div>
+</form>
+

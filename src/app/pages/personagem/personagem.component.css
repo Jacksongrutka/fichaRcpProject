@@ -129,6 +129,10 @@
 .personagem .atributosValoresContainer input{
   width: 30px;
 }
+.personagem .atributosValoresContainer a:hover{
+  color: #4CAF50;
+  cursor: pointer;
+}
 .personagem .statusTitleContainer {
   display: flex;
   justify-content: space-around;
